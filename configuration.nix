@@ -1115,7 +1115,7 @@ in
         unstable.grsync
         unstable.luckybackup
         unstable.drawio
-        youtube-dl
+        unstable.youtube-dl
         yubikey-manager
         yubico-piv-tool
         yubikey-manager-qt
@@ -1167,6 +1167,7 @@ in
           sha256 = "04zqvj7n803dwp4jkhiihhynp82birb14vamm6ys39a0zgs91cnv";
         };
       });
+      /*
       youtube-dl = super.youtube-dl.overrideAttrs (old: rec {
         pname = "youtube-dl";
         version = "2020.11.11-3";
@@ -1176,6 +1177,7 @@ in
           sha256 = "116azzzj0df3bv99zwn0rsarirw56knbq7xqn1fs8v4ilslqp7v4";
         };
       });
+      */
     })
   ];
 
