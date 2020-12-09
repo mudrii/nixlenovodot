@@ -1,0 +1,47 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 600,
+       "width": 800,
+       "x": 0,
+       "y": 0
+    },
+    "name": "Passwords.kdbx [Locked] - KeePassXC",
+    "percent": 0.5,
+    "swallows": [
+       {
+       "class": "^KeePassXC$",
+       "instance": "^keepassxc$",
+       // "title": "^Passwords\\.kdbx\\ \\[Locked\\]\\ \\-\\ KeePassXC$"
+       "transient_for": "^$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1371,
+       "width": 1265,
+       "x": 1282,
+       "y": 58
+    },
+    "name": "~/src/my_docs/corp/Interview_qa.md • (my_docs) - Sublime Text",
+    "percent": 0.5,
+    "swallows": [
+       {
+       "class": "^Sublime_text$",
+       "instance": "^sublime_text$",
+       // "title": "^\\~\\/src\\/my_docs\\/corp\\/Interview_qa\\.md\\ \\•\\ \\(my_docs\\)\\ \\-\\ Sublime\\ Text$"
+       "transient_for": "^$"
+       }
+    ],
+    "type": "con"
+}
+

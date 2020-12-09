@@ -1,0 +1,16 @@
+#Host *
+#   AddKeysToAgent yes
+##   UseKeychain yes
+#   IdentityFile ~/.ssh/id_rsa
+
+Host github.com
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_rsa_yubikey.pub
+
+Host localhost
+   HostName localhost
+   User root
+
+Host 127.0.0.1
+   HostName 127.0.0.1
+   User root

@@ -1,0 +1,100 @@
+icons = "awesome"
+theme = "solarized-dark"
+
+[[block]]
+alert = 10.0
+alias = "/"
+block = "disk_space"
+info_type = "available"
+interval = 20
+path = "/"
+unit = "GB"
+warning = 20.0
+format = "{icon}{available}/{used} {unit}"
+
+[[block]]
+block = "memory"
+clickable = true
+critical_mem = 95
+display_type = "memory"
+format_mem = "{MTg}/{MUg} GB"
+icons = true
+interval = 5
+warning_mem = 70
+
+[[block]]
+block = "cpu"
+critical = 95
+format = "{utilization}% {frequency}GHz"
+info = 30
+interval = 1
+warning = 60
+
+[[block]]
+block = "load"
+format = "{1m} {5m} {15m}"
+interval = 2
+
+[[block]]
+block = "temperature"
+chip = "coretemp-isa-0000"
+collapsed = false
+format = "{max}° cpu"
+good = 40
+idle = 60
+info = 80
+interval = 10
+warning = 90
+
+[[block]]
+block = "nvidia_gpu"
+interval = 1
+label = ""
+show_clocks = true
+show_fan_speed = false
+show_memory = false
+show_temperature = true
+show_utilization = true
+
+[[block]]
+block = "net"
+device = "wlp82s0"
+hide_inactive = true
+hide_missing = true
+interval = 5
+format = "{ssid}"
+
+[[block]]
+block = "net"
+device = "enp0s31f6"
+hide_inactive = true
+hide_missing = true
+interval = 5
+format = "{ip}"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+
+#[[block]]
+#block = "bluetooth"
+#mac = "DC:71:96:F0:ED:B1"
+
+[[block]]
+block = "battery"
+format = "{percentage}% {time}"
+interval = 10
+
+[[block]]
+block = "time"
+format = "%a %d/%m %R"
+interval = 60
+
+[[block]]
+block = "custom"
+command = "echo '\uF011'"
+interval = 999999
+on_click = "i3-nagbar -t warning -m 'What do you want to do?' -b 'Shutdown' 'shutdown now' -b 'Hibernate' 'systemctl hibernate' -b 'Reboot' 'reboot'"
