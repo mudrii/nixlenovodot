@@ -1038,6 +1038,7 @@ in
               pip
               powerline
               pygments
+              yubico-client
               pygments-markdown-lexer
               xstatic-pygments
               pylint
@@ -1062,7 +1063,7 @@ in
         lorri
         unstable.direnv
         psensor
-        firefox
+        firefox-bin
         chromium
         qutebrowser
         brave
