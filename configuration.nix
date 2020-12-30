@@ -839,6 +839,7 @@ in
       ag
       htop
       iftop
+      atop
       nethogs
       nmon
       iotop
