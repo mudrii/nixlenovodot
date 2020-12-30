@@ -985,7 +985,7 @@ in
         unstable.minio-client
         unstable.google-cloud-sdk-gce
         #unstable.awscli
-        awscli
+        unstable.awscli
         #unstable.pulumi-bin
         unstable.gitAndTools.gitFull
         unstable.gitAndTools.git-hub
