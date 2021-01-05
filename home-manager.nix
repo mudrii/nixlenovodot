@@ -237,6 +237,7 @@ in
           ".gnupg/gpg.conf".source = dotfiles/gpg.conf;
           ".config/i3/config".source = dotfiles/config;
           ".ssh/config".source = dotfiles/config.ssh;
+          ".config/kitty/kitty.conf".source = dotfiles/kitty.conf;
           ".config/i3/start_w1.sh".source = dotfiles/start_w1.sh;
           ".config/i3/start_w2.sh".source = dotfiles/start_w2.sh;
           ".config/i3/start_w3.sh".source = dotfiles/start_w3.sh;

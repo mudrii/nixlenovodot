@@ -54,7 +54,8 @@ set t_Co=256
 
 " General Config
 set title
-set number
+"set number
+set rnu
 set history=1000
 set showcmd
 set showmode

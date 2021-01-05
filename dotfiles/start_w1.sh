@@ -4,7 +4,8 @@ i3-msg "workspace 1; append_layout ~/.config/i3/workspace_1.json"
 
 # And finally we fill the containers with the programs they had
 (firefox &)
-(alacritty &)
+(kitty &)
+#(alacritty &)
 #(alacritty -e tmux new -s 1 &)
 #(urxvt &)
 
