@@ -938,17 +938,22 @@ in
       mv = "mv -i";
       nixcl = "sudo nix-store --optimise -v && sudo nix-collect-garbage -d";
       nixup = "sudo nix-channel --update && sudo nixos-rebuild switch";
+      nixg = "git --git-dir=$HOME/src/nixlenovodot/ --work-tree=/etc/nixos";
       py = "python";
       ping = "ping -c3";
       ps = "ps -ef";
       pvpn = "sudo protonvpn";
-      rm = "rm -i";
-      rmf = "rm -rf";
+      pul = "pulumi";
+      # rm = "rm -i";
+      # rmf = "rm -rf";
+      rm = "trash-put";
+      unrm = "trash-restore";
+      rmcl = "trash-empty";
+      rml = "trash-list";
       sudo = "sudo -i";
       suf = "su --shell=/usr/bin/fish";
       ter = "terraform";
       vdir = "vdir --color=auto";
-      nixg = "git --git-dir=$HOME/src/nixlenovodot/ --work-tree=/etc/nixos";
     };
   };
 
