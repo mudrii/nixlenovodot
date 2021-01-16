@@ -990,14 +990,13 @@ in
         # keychain
         unstable.minio-client
         unstable.google-cloud-sdk-gce
-        #unstable.awscli
         unstable.awscli
-        #unstable.pulumi-bin
+        unstable.pulumi-bin
         unstable.gitAndTools.gitFull
         unstable.gitAndTools.git-hub
         unstable.gitAndTools.gh
         unstable.git-lfs
-        unstable.terraform_0_13
+        unstable.terraform_0_14
         unstable.terraform-ls
         #unstable.terraform-lsp
         unstable.tflint
@@ -1104,12 +1103,10 @@ in
         spotify
         bookworm
         ltrace
-        /*
         (unstable.tor-browser-bundle-bin.override {
           mediaSupport = true;
           pulseaudioSupport = true;
         })
-        */
         unstable.keepassxc
         openconnect_openssl
         networkmanager-openconnect
