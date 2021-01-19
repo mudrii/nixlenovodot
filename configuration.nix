@@ -1128,6 +1128,8 @@ in
         yubikey-personalization-gui
         yubioath-desktop
         yubico-pam
+        monero-gui
+        unstable.xmrig
       ];
     };
   };

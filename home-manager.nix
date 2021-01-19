@@ -47,6 +47,8 @@ in
           path = [ pkgs.user-environment ];
         };
 
+#        kitty = { enable = true; };
+
         alacritty = {
           enable = true;
           settings = {
