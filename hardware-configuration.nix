@@ -22,6 +22,7 @@
     {
       device = "/dev/disk/by-uuid/7f4bbb31-4183-4ec4-9927-0a5fa2c5f2e9";
       fsType = "ext4";
+      options = [ "noatime" "nodiratime" "discard" ];
     };
 
   boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/40dd2d7f-06d6-4092-8611-8944d1408cd0";
