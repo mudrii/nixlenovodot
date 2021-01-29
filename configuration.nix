@@ -1088,6 +1088,9 @@ in
         home-manager
         fzf
         bat
+        ripgrep-all
+        tldr
+        procs
         fd
         skypeforlinux
         zathura
