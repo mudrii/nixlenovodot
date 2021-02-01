@@ -55,8 +55,8 @@ set -x NNN_TRASH 1
 set -x PAGER less
 set -x LESS -R
 
-set -x TERMINAL alacritty
-set -x TERM alacritty
+#set -x TERMINAL kitty
+#set -x TERM kitty
 
 set -x VISUAL nvim
 set -x EDITOR nvim

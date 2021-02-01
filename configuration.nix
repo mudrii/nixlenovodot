@@ -81,6 +81,7 @@ in
 
   hardware = {
     cpu.intel.updateMicrocode = true;
+    ledger.enable = true;
     enableRedistributableFirmware = true;
     # enableAllFirmware = true;
 
