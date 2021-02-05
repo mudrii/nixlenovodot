@@ -58,9 +58,18 @@ in
 
 
   boot = {
+    supportedFilesystems = [ "ntfs" ];
+    #kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = unstable.linuxPackages_latest;
+    blacklistedKernelModules = [ "nouveau" ];
+    cleanTmpDir = true;
+    #extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
+    #kernelParams = [ "nvidia-drm.modeset=1" ];
+      
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
+
       grub = {
         enableCryptodisk = true;
         # enable = true;
@@ -70,13 +79,6 @@ in
         # useOSProber = true;
       };
     };
-
-    supportedFilesystems = [ "ntfs" ];
-    kernelPackages = pkgs.linuxPackages_latest;
-    blacklistedKernelModules = [ "nouveau" ];
-    # extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
-    # kernelParams = [ "nvidia-drm.modeset=1" ];
-    cleanTmpDir = true;
   };
 
   hardware = {
@@ -107,6 +109,7 @@ in
     };
 
     nvidia = {
+      #package = "config.boot.kernelPackages.nvidiaPackages.beta";
       modesetting.enable = true;
       # nvidiaPersistenced = false;
       prime = {
@@ -228,8 +231,13 @@ in
     seahorse.enable = true;
     vim.defaultEditor = true;
     mtr.enable = true;
-    ssh.startAgent = false;
     nm-applet.enable = true;
+    
+    ssh = {
+      startAgent = false;
+      forwardX11 = true;
+      setXAuthLocation = true;
+    };
 
     gnupg.agent = {
       enable = true;
@@ -239,6 +247,7 @@ in
     chromium = {
       enable = true;
     };
+
     bash = {
       enableCompletion = true;
       # shellInit = "neofetch";
@@ -277,6 +286,8 @@ in
     docker = {
       enable = true;
       enableNvidia = true;
+      autoPrune.enable = true;
+      enableOnBoot = true;
     };
 
     libvirtd = {
@@ -306,6 +317,8 @@ in
     fail2ban.enable = true;
     emacs.enable = true;
     pcscd.enable = true;  # needed for YubiKey
+    xmr-stak.cudaSupport = true;
+    lorri.enable = true;
     
     /*
     # Finger Print unlock login
@@ -485,8 +498,8 @@ in
         # DEVICES_TO_ENABLE_ON_WWAN_DISCONNECT=""
 
         # Set battery charge thresholds for main battery (BAT0) and auxiliary/Ultrabay battery (BAT1). Values are given as a percentage of the full capacity. A value of 0 is translated to the hardware defaults 96/100%.        
-        START_CHARGE_THRESH_BAT0=45;
-        STOP_CHARGE_THRESH_BAT0=75;
+        START_CHARGE_THRESH_BAT0=40;
+        STOP_CHARGE_THRESH_BAT0=70;
 
         # Control battery feature drivers:
         NATACPI_ENABLE=1;
@@ -629,7 +642,7 @@ in
       enable = true;
       # autorun = false;
       # videoDrivers = [ "intel" ];
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = [ "nvidiaBeta" ];
       layout = "us";
       xkbOptions = "eurosign:e";
 
@@ -795,10 +808,14 @@ in
       nixpkgs-lint
       nix-prefetch
       nix-du
+      nix-top
       nix-linter
       nixpkgs-review
       nixpkgs-pytools
       nix-update
+      nix-tree
+      nixFlakes
+      nixos-generators
       rnix-lsp
       unstable.nix-simple-deploy
       niv
@@ -845,6 +862,7 @@ in
       jdupes
       ag
       htop
+      ytop
       iftop
       atop
       nethogs
@@ -909,6 +927,7 @@ in
       openvpn
       wireguard
       unstable.gopass
+      #unstable.solaar # logitech mous unify receiver config
     ];
 
     shellAliases = {
@@ -1073,7 +1092,7 @@ in
         asciinema
         highlight
         jq
-        lorri
+        #lorri
         unstable.direnv
         psensor
         firefox-bin
@@ -1140,6 +1159,7 @@ in
         monero
         monero-gui
         unstable.xmrig
+        unstable.xmr-stak
         unstable.ledger
         unstable.ledger-web
         unstable.ledger-live-desktop
@@ -1187,6 +1207,23 @@ in
           sha256 = "04zqvj7n803dwp4jkhiihhynp82birb14vamm6ys39a0zgs91cnv";
         };
       });
+      /*
+      fwup = super.fwup.overrideAttrs (old: {
+        src = super.fetchFromGitHub {
+          owner = "fhunleth";
+          repo = "fwup";
+          rev = "v1.8.3";
+          sha256 = "0p3kp1kai5zrgagjzhd41gl84gfqk04qnq1d1dnf0ckvhsfdq9vb";
+        };
+        
+        buildInputs = with super; [
+          libarchive
+          libconfuse
+          which
+          xdelta
+        ];
+      });
+      */
       /*
       youtube-dl = super.youtube-dl.overrideAttrs (old: rec {
         pname = "youtube-dl";

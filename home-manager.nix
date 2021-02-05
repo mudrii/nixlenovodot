@@ -20,8 +20,6 @@ in
 
     users.mudrii = {
       
-      services.lorri.enable = true;
-
       programs = {
         /*
         starship = {
@@ -45,6 +43,11 @@ in
         home-manager = {
           enable = true;
           path = [ pkgs.user-environment ];
+        };
+        
+        tmux = {
+          enable = true;
+          historyLimit = 1000000;
         };
 
 #        kitty = { enable = true; };
