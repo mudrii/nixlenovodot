@@ -197,6 +197,7 @@ noremap <leader>z :bd<CR>
 map <leader>i mmgg=G`m<CR>
 
 noremap <leader>c :bd<CR>
+
 " Toggle highlighting of search results
 nnoremap <leader><space> :nohlsearch<cr>
 
