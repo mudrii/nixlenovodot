@@ -1099,6 +1099,8 @@ in
         chromium
         qutebrowser
         brave
+        unstable.amfora
+        unstable.lagrange
         unstable.vscode
         unstable.sublime3
         slack

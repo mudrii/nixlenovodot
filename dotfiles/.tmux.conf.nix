@@ -6,8 +6,9 @@
         source ${pkgs.python37Packages.powerline}/share/tmux/powerline.conf
 
         set-option -g default-shell "/run/current-system/sw/bin/fish"
-    
-        set -g default-terminal "screen-256color"
+
+        set -g default-terminal "xterm-256color"
+    #   set -g default-terminal "screen-256color"
         set -as terminal-overrides ",*:Tc"
     #   set -as terminal-overrides ",*-256color:Tc"
         setw -g xterm-keys on

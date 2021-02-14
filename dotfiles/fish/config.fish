@@ -57,6 +57,7 @@ set -x LESS -R
 
 #set -x TERMINAL kitty
 #set -x TERM kitty
+set -x TERM xterm-256color
 
 set -x VISUAL nvim
 set -x EDITOR nvim

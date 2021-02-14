@@ -8,7 +8,7 @@ let
   };
 in
 */  
-  {
+{
 
   imports = [
     ./dotfiles/.tmux.conf.nix
@@ -44,12 +44,13 @@ in
           enable = true;
           path = [ pkgs.user-environment ];
         };
-        
+/*        
         tmux = {
           enable = true;
           historyLimit = 1000000;
+          default-terminal = "xterm-256color";
         };
-
+*/
 #        kitty = { enable = true; };
 
         alacritty = {
@@ -119,9 +120,10 @@ in
             vim-fish
             vim-airline
             vim-airline-themes
+            vim-devicons
             nerdtree
             nerdcommenter
-            nerdtree-git-plugin
+            #nerdtree-git-plugin
             #unstable.vim-nerdtree-syntax-highlight
             ctrlp-vim
             vim-fugitive
@@ -223,6 +225,7 @@ in
           SHELL = "fish";
           BROWSER = "firefox";
           MANPAGER = "nvim -c 'set ft=man' -";
+          TERM = "xterm-256color";
           #KUBECTL_EXTERNAL_DIFF = "meld";
           #DOCKER_BUILDKIT = "1";
           #LESS = "-R";
