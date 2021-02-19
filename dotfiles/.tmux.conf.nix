@@ -3,7 +3,7 @@
 {
 
   home-manager.users.mudrii.home.file.".tmux.conf".text = ''
-        source ${pkgs.python37Packages.powerline}/share/tmux/powerline.conf
+        source ${pkgs.python38Packages.powerline}/share/tmux/powerline.conf
 
         set-option -g default-shell "/run/current-system/sw/bin/fish"
 

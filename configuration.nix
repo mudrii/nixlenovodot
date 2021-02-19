@@ -642,7 +642,8 @@ in
       enable = true;
       # autorun = false;
       # videoDrivers = [ "intel" ];
-      videoDrivers = [ "nvidiaBeta" ];
+      #videoDrivers = [ "nvidiaBeta" ];
+      videoDrivers = [ "nvidia" ];
       layout = "us";
       xkbOptions = "eurosign:e";
 
