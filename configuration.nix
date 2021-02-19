@@ -927,7 +927,11 @@ in
       protonvpn-gui
       openvpn
       wireguard
+      wireshark-cli
+      wireshark
+      gksu
       unstable.gopass
+      unstable.xmrig
       #unstable.solaar # logitech mous unify receiver config
     ];
 
