@@ -831,6 +831,8 @@ in
       binutils
       cryptsetup
       dstat
+      unstable.duf
+      duff
       gptfdisk
       parted
       mc
@@ -1036,6 +1038,7 @@ in
         unstable.helmfile
         unstable.helmsman
         unstable.kind
+        unstable.lens
         unstable.docker-machine-kvm2
         unstable.minikube
         unstable.fluxctl
@@ -1108,6 +1111,7 @@ in
         unstable.lagrange
         unstable.vscode
         unstable.sublime3
+        unstable.insomnia
         slack
         vlc
         filezilla

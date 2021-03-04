@@ -121,6 +121,7 @@ in
             vim-airline
             vim-airline-themes
             vim-devicons
+            vim-gitgutter
             nerdtree
             nerdcommenter
             #nerdtree-git-plugin
@@ -129,6 +130,16 @@ in
             vim-fugitive
             fzf-vim
             syntastic
+            #coc-nvim
+            #coc-yaml
+            #coc-git
+            #coc-fzf
+            #coc-json
+            #coc-python
+            #coc-snippets
+            #coc-prettier
+            #coc-markdownlint
+            #coc-spell-checker
           ];
         };
 

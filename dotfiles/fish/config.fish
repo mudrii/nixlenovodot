@@ -52,6 +52,10 @@ set -x NNN_USE_EDITOR 1
 #set -x NNN_COLORS '1267'
 set -x NNN_TRASH 1
 
+# manpager 
+set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+#set -x MANPAGER "nvim -c 'set tf=man' -"
+
 set -x PAGER less
 set -x LESS -R
 
