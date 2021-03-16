@@ -55,6 +55,10 @@ set fileformats=unix
 set t_Co=256
 
 " General Config
+set exrc " open .vimrc from current folder
+set guicursor= " set cursor as block
+set nowrap " do not wrap the test
+"set signcolumn=yes " always show extra column to the left for linting etc
 set title
 "set number
 set rnu
@@ -76,7 +80,7 @@ set magic
 
 " Scrolling
 set scrolljump=5
-set scrolloff=3
+set scrolloff=5
 set sidescrolloff=15
 set sidescroll=1
 
@@ -159,6 +163,7 @@ endif
  set hlsearch
  set incsearch " set incremental search, like modern browsers
  set nolazyredraw " don't redraw while executing macros
+" set nohlsearch " do not highlight search
  
 " Fast saving
 "nmap <leader>w :w!<cr>
@@ -243,3 +248,15 @@ function! s:DiffWithSaved()
     exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
 com! Diffs call s:DiffWithSaved()
+
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup THE_PRIMEAGEN
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
+    "autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
+augroup END

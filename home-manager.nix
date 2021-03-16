@@ -124,12 +124,14 @@ in
             vim-gitgutter
             nerdtree
             nerdcommenter
+            completion-nvim
             #nerdtree-git-plugin
             #unstable.vim-nerdtree-syntax-highlight
             ctrlp-vim
             vim-fugitive
             fzf-vim
             syntastic
+            #nvim-lspconfig
             #coc-nvim
             #coc-yaml
             #coc-git

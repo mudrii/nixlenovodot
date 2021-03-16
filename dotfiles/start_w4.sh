@@ -8,7 +8,8 @@ i3-msg "workspace 4; append_layout ~/.config/i3/workspace_4.json"
 #(alacritty -e ranger &)
 (kitty -e ranger &)
 #(alacritty -e tmux &)
-(kitty -e tmux &)
+#(kitty -e tmux &)
+(kitty &)
 #(alacritty -e tmux new -s 3 &)
 
 #i3-save-tree --workspace 4 > ~/.config/i3/workspace_4.json

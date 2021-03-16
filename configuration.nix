@@ -931,6 +931,7 @@ in
       wireguard
       wireshark-cli
       wireshark
+      aircrack-ng
       gksu
       unstable.gopass
       unstable.xmrig
@@ -1126,6 +1127,7 @@ in
         skypeforlinux
         zathura
         mpv
+        pv
         feh
         weechat
         gcc
