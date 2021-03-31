@@ -1,6 +1,6 @@
 "autocmd vimenter * NERDTree
 
-set shell=sh
+"set shell=sh
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -58,7 +58,7 @@ set t_Co=256
 set exrc " open .vimrc from current folder
 set guicursor= " set cursor as block
 set nowrap " do not wrap the test
-"set signcolumn=yes " always show extra column to the left for linting etc
+set signcolumn=yes " always show extra column to the left for linting etc
 set title
 "set number
 set rnu
@@ -157,13 +157,16 @@ if has('persistent_undo') && !isdirectory(expand('~').'/.vim/backups')
     set undofile
 endif
 
+" Git undotree
+nnoremap <F5> :UndotreeToggle<CR>
+
 " Searching
  set ignorecase " case insensitive searching
  set smartcase " case-sensitive if expresson contains a capital letter
  set hlsearch
  set incsearch " set incremental search, like modern browsers
  set nolazyredraw " don't redraw while executing macros
-" set nohlsearch " do not highlight search
+ set nohlsearch " do not highlight search
  
 " Fast saving
 "nmap <leader>w :w!<cr>
@@ -188,6 +191,7 @@ noremap <Leader>v :<C-u>vsplit<CR>
 noremap <leader>z :bp<CR>
 noremap <leader>q :bn<CR>
 noremap <leader>a :ls<CR>
+noremap <leader>c :bd<CR>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<CR>
@@ -203,8 +207,6 @@ noremap <leader>z :bd<CR>
 " Fix indentation in file
 map <leader>i mmgg=G`m<CR>
 
-noremap <leader>c :bd<CR>
-
 " Toggle highlighting of search results
 nnoremap <leader><space> :nohlsearch<cr>
 
@@ -216,8 +218,8 @@ nmap <silent> <leader>p :set spell!<CR>
 
 " Quick timeouts on key combinations.
 " Auto indent pasted text
-nnoremap p p=`]<C-o>
-nnoremap P P=`]<C-o>
+" nnoremap p p=`]<C-o>
+" nnoremap P P=`]<C-o>
 
 " comments the line
 "vnoremap <C-b> :norm
@@ -238,6 +240,11 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
+
+" Fugitive Git vew map
+nmap <leader>gs :G<CR>
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
 
 " Custom Settings
 function! s:DiffWithSaved()

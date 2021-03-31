@@ -1,13 +1,11 @@
 { config, lib, pkgs, ... }:
 
-/* 
-# Not working yet
 let
   unstable = import <unstable> {
     config.allowUnfree = true;
   };
 in
-*/  
+
 {
 
   imports = [
@@ -19,7 +17,7 @@ in
     useUserPackages = true;
 
     users.mudrii = {
-      
+
       programs = {
         /*
         starship = {
@@ -31,7 +29,7 @@ in
           enable = true;
           enableFishIntegration = true;
         };
-        
+
         direnv = {
           enable = true;
           enableFishIntegration = true;
@@ -44,7 +42,7 @@ in
           enable = true;
           path = [ pkgs.user-environment ];
         };
-/*        
+/*
         tmux = {
           enable = true;
           historyLimit = 1000000;
@@ -94,7 +92,7 @@ in
           };
         };
 
-        /*      
+        /*
               vim = {
                 enable = true;
                 settings = { ignorecase = true; };
@@ -115,33 +113,41 @@ in
           enable = true;
           vimAlias = true;
           extraConfig = builtins.readFile dotfiles/.vimrc;
-          plugins = with pkgs.vimPlugins; [
-            vim-nix
-            vim-fish
-            vim-airline
-            vim-airline-themes
-            vim-devicons
-            vim-gitgutter
-            nerdtree
-            nerdcommenter
-            completion-nvim
-            #nerdtree-git-plugin
-            #unstable.vim-nerdtree-syntax-highlight
-            ctrlp-vim
-            vim-fugitive
-            fzf-vim
-            syntastic
-            #nvim-lspconfig
-            #coc-nvim
-            #coc-yaml
-            #coc-git
-            #coc-fzf
-            #coc-json
-            #coc-python
-            #coc-snippets
-            #coc-prettier
-            #coc-markdownlint
-            #coc-spell-checker
+          plugins = with pkgs; [
+            vimPlugins.vim-nix
+            vimPlugins.vim-fish
+            vimPlugins.vim-airline
+            vimPlugins.vim-airline-themes
+            vimPlugins.vim-devicons
+            vimPlugins.vim-gitgutter
+            vimPlugins.completion-nvim
+            unstable.vimPlugins.nerdtree
+            unstable.vimPlugins.nerdcommenter
+            unstable.vimPlugins.nerdtree-git-plugin
+            unstable.vimPlugins.vim-nerdtree-syntax-highlight
+            vimPlugins.ctrlp-vim
+            vimPlugins.vim-fugitive
+            vimPlugins.fzf-vim
+            vimPlugins.syntastic
+            unstable.vimPlugins.vim-closer
+            unstable.vimPlugins.vim-endwise
+            unstable.vimPlugins.vim-snippets
+            unstable.vimPlugins.vim-commentary
+            unstable.vimPlugins.undotree
+            unstable.vimPlugins.YouCompleteMe
+            #vimPlugins.nvim-lspconfig
+#          plugins = with pkgs.vimPlugins; [
+#            vim-nix
+#            vim-fish
+#            vim-airline
+#            vim-airline-themes
+#            vim-devicons
+#            vim-gitgutter
+#            nerdtree
+#            nerdcommenter
+#            completion-nvim
+#            nerdtree-git-plugin
+#            #coc-spell-checker
           ];
         };
 
@@ -230,8 +236,8 @@ in
           };
         };
       };
-      
-      home = { 
+
+      home = {
         stateVersion = "20.09";
         sessionVariables = {
           EDITOR = "nvim";

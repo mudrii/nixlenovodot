@@ -909,7 +909,6 @@ in
       mtr
       nftables
       psmisc
-      ripgrep-all
       ripgrep
       du-dust
       exa
@@ -1181,7 +1180,8 @@ in
   };
 
   nix = {
-    #package = pkgs.nixUnstable;
+    #package = pkgs.nixUnstable; 
+    package = pkgs.nixFlakes; 
     useSandbox = true;
     autoOptimiseStore = true;
     readOnlyStore = false;
@@ -1192,7 +1192,7 @@ in
       keep-outputs = true
       keep-derivations = true
       # preallocate-contents = false
-      # experimental-features = nix-command flakes
+      experimental-features = nix-command flakes
       '';
 
     gc = {
