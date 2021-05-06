@@ -129,7 +129,7 @@ in
             vimPlugins.vim-fugitive
             vimPlugins.fzf-vim
             vimPlugins.syntastic
-            unstable.vimPlugins.vim-closer
+            #unstable.vimPlugins.vim-closer
             unstable.vimPlugins.vim-endwise
             unstable.vimPlugins.vim-snippets
             unstable.vimPlugins.vim-commentary

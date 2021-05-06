@@ -1038,6 +1038,7 @@ in
         unstable.helmfile
         unstable.helmsman
         unstable.kind
+        unstable.kube3d
         unstable.lens
         unstable.docker-machine-kvm2
         unstable.minikube
