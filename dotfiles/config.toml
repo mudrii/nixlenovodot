@@ -10,22 +10,22 @@ interval = 20
 path = "/"
 unit = "GB"
 warning = 20.0
-format = "{icon}{available}/{used} {unit}"
+format = "{icon}{available}/{used}"
 
 [[block]]
 block = "memory"
 clickable = true
 critical_mem = 95
 display_type = "memory"
-format_mem = "{MTg}/{MUg} GB"
+format_mem = "{mem_total}/{mem_total_used}"
 icons = true
 interval = 5
 warning_mem = 70
 
 [[block]]
 block = "cpu"
-critical = 95
-format = "{utilization}% {frequency}GHz"
+critical = 90
+format = "{utilization} {frequency}"
 info = 30
 interval = 1
 warning = 60
@@ -39,7 +39,7 @@ interval = 2
 block = "temperature"
 chip = "coretemp-isa-0000"
 collapsed = false
-format = "{max}° cpu"
+format = "{max}"
 good = 40
 idle = 60
 info = 80
@@ -79,13 +79,13 @@ block = "sound"
 block = "backlight"
 device = "intel_backlight"
 
-#[[block]]
-#block = "bluetooth"
-#mac = "DC:71:96:F0:ED:B1"
+##[[block]]
+##block = "bluetooth"
+##mac = "DC:71:96:F0:ED:B1"
 
 [[block]]
 block = "battery"
-format = "{percentage}% {time}"
+format = "{percentage} {time}"
 interval = 10
 
 [[block]]
