@@ -12,22 +12,6 @@ in
 
 {
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-  };  
-  
-  /*  
-    nixpkgs.config = {
-      packageOverrides = pkgs: {
-        unstable = import unstableTarball {
-          config = config.nixpkgs.config;
-        };
-      };
-    };
-  */
-
   imports =
     [
       # Include the results of the hardware scan.
@@ -1210,17 +1194,32 @@ in
     
   };
 
-  nixpkgs.overlays = [
-    (self: super: {
-      element-desktop = super.element-desktop.overrideAttrs (old: rec {
-        version = "1.7.14";
-        src = pkgs.fetchFromGitHub {
-          owner = "vector-im";
-          repo = "riot-desktop";
-          rev = "v${version}";
-          sha256 = "04zqvj7n803dwp4jkhiihhynp82birb14vamm6ys39a0zgs91cnv";
+  nixpkgs = {
+    
+    config = {
+      pulseaudio = true;
+      allowBroken = true;
+      allowUnfree = true;
+      packageOverrides = pkgs: {
+#        unstable = import <nixpkgs-unstable> {
+#          config = config.nixpkgs.config;
+#        };
+        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+          inherit pkgs;
         };
-      });
+      };
+    };
+    overlays = [
+      (self: super: {
+        element-desktop = super.element-desktop.overrideAttrs (old: rec {
+          version = "1.7.14";
+          src = pkgs.fetchFromGitHub {
+            owner = "vector-im";
+            repo = "riot-desktop";
+            rev = "v${version}";
+            sha256 = "04zqvj7n803dwp4jkhiihhynp82birb14vamm6ys39a0zgs91cnv";
+          };
+        });
       /*
       fwup = super.fwup.overrideAttrs (old: {
         src = super.fetchFromGitHub {
@@ -1249,13 +1248,8 @@ in
         };
       });
       */
-    })
-  ];
-
-  nixpkgs.config = {
-    pulseaudio = true;
-    allowBroken = true;
-    allowUnfree = true;
+      })
+    ];
   };
 
   # This value determines the NixOS release with which your system is to be

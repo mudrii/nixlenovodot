@@ -10,14 +10,14 @@ interval = 20
 path = "/"
 unit = "GB"
 warning = 20.0
-format = "{icon}{available}/{used}"
+format = "{icon} {available} {used}"
 
 [[block]]
 block = "memory"
 clickable = true
-critical_mem = 95
+critical_mem = 90
 display_type = "memory"
-format_mem = "{mem_total}/{mem_total_used}"
+format_mem = "{mem_free}{mem_total_used}"
 icons = true
 interval = 5
 warning_mem = 70
