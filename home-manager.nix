@@ -121,20 +121,32 @@ in
             vimPlugins.vim-devicons
             vimPlugins.vim-gitgutter
             vimPlugins.completion-nvim
-            unstable.vimPlugins.nerdtree
-            unstable.vimPlugins.nerdcommenter
-            unstable.vimPlugins.nerdtree-git-plugin
-            unstable.vimPlugins.vim-nerdtree-syntax-highlight
             vimPlugins.ctrlp-vim
             vimPlugins.vim-fugitive
             vimPlugins.fzf-vim
             vimPlugins.syntastic
-            #unstable.vimPlugins.vim-closer
+            vimPlugins.coc-python
+            vimPlugins.coc-nvim
+            vimPlugins.coc-yaml
+            vimPlugins.coc-json
+            vimPlugins.coc-html
+            vimPlugins.coc-lists
+            vimPlugins.coc-eslint
+            vimPlugins.coc-tsserver
+            vimPlugins.coc-snippets
+            vimPlugins.coc-pairs
+            vimPlugins.coc-prettier
+            vimPlugins.coc-markdownlint
+            unstable.vimPlugins.nerdtree
+            unstable.vimPlugins.nerdcommenter
+            unstable.vimPlugins.nerdtree-git-plugin
+            unstable.vimPlugins.vim-nerdtree-syntax-highlight
+            unstable.vimPlugins.vim-closer
             unstable.vimPlugins.vim-endwise
             unstable.vimPlugins.vim-snippets
             unstable.vimPlugins.vim-commentary
             unstable.vimPlugins.undotree
-            unstable.vimPlugins.YouCompleteMe
+            #unstable.vimPlugins.YouCompleteMe
             #vimPlugins.nvim-lspconfig
 #          plugins = with pkgs.vimPlugins; [
 #            vim-nix
@@ -175,7 +187,6 @@ in
             a = "add";
             s = "status";
             f = "fetch";
-            br = "branch";
             pa = "add --patch";
             pc = "commit --patch";
             rf = "reflog";

@@ -785,6 +785,8 @@ in
     enableDebugInfo = true;
 
     systemPackages = with pkgs; [
+      efibootmgr
+      efivar
       chkrootkit
       lynis
       nixfmt
@@ -1160,6 +1162,7 @@ in
         unstable.ledger
         unstable.ledger-web
         unstable.ledger-live-desktop
+        unstable.nodejs
       ];
     };
   };
@@ -1170,8 +1173,8 @@ in
     useSandbox = true;
     autoOptimiseStore = true;
     readOnlyStore = false;
-    allowedUsers = [ "@wheel" "root" "mudrii" ];
-    trustedUsers = [ "@wheel" "root" "mudrii" ];
+    allowedUsers = [ "@wheel" "mudrii" ];
+    trustedUsers = [ "@wheel" "mudrii" ];
 
     extraOptions = ''
       keep-outputs = true
@@ -1212,12 +1215,12 @@ in
     overlays = [
       (self: super: {
         element-desktop = super.element-desktop.overrideAttrs (old: rec {
-          version = "1.7.14";
+          version = "1.7.27";
           src = pkgs.fetchFromGitHub {
             owner = "vector-im";
-            repo = "riot-desktop";
+            repo = "element-desktop";
             rev = "v${version}";
-            sha256 = "04zqvj7n803dwp4jkhiihhynp82birb14vamm6ys39a0zgs91cnv";
+            sha256 = "0rgsc2cc1v6gjsklwvsjlqq9a8j9j80h9ac0jkvf9lhq33f3c57k";
           };
         });
       /*
