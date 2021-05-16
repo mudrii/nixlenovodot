@@ -120,7 +120,7 @@ in
             vimPlugins.vim-airline-themes
             vimPlugins.vim-devicons
             vimPlugins.vim-gitgutter
-            vimPlugins.completion-nvim
+            #vimPlugins.completion-nvim
             vimPlugins.ctrlp-vim
             vimPlugins.vim-fugitive
             vimPlugins.fzf-vim
@@ -141,8 +141,8 @@ in
             unstable.vimPlugins.nerdcommenter
             unstable.vimPlugins.nerdtree-git-plugin
             unstable.vimPlugins.vim-nerdtree-syntax-highlight
-            unstable.vimPlugins.vim-closer
-            unstable.vimPlugins.vim-endwise
+            #unstable.vimPlugins.vim-closer
+            #unstable.vimPlugins.vim-endwise
             unstable.vimPlugins.vim-snippets
             unstable.vimPlugins.vim-commentary
             unstable.vimPlugins.undotree

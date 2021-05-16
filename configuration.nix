@@ -1015,7 +1015,7 @@ in
         unstable.gitAndTools.git-hub
         unstable.gitAndTools.gh
         unstable.git-lfs
-        unstable.terraform_0_14
+        unstable.terraform_0_15
         unstable.terraform-ls
         #unstable.terraform-lsp
         unstable.tflint
@@ -1055,13 +1055,14 @@ in
           template
         ]))
         */
-        # (lowPrio unstable.python38Full)
-        python38Full
-        # python37Full
+        # (lowPrio unstable.python39Full)
+        python3Full
+        #python39Full
+        #python39Packages.pip
         (
           python3.withPackages (
             ps: with ps; [
-              # poetry
+              poetry
               pip
               powerline
               pygments
@@ -1070,18 +1071,16 @@ in
               xstatic-pygments
               pylint
               pandas
+              #pycuda
               numpy
               scipy
               matplotlib
               jupyter
+              pynvim
             ]
           )
         )
-        # python37Packages.pip
-        # unstable.python37Packages.virtualenv
-        # python37Packages.powerline
-        # python37Packages.pygments
-        # python37Packages.pycuda
+        #unstable.python38Packages.pynvim
         aspell
         aspellDicts.en
         asciinema
@@ -1231,7 +1230,6 @@ in
           rev = "v1.8.3";
           sha256 = "0p3kp1kai5zrgagjzhd41gl84gfqk04qnq1d1dnf0ckvhsfdq9vb";
         };
-        
         buildInputs = with super; [
           libarchive
           libconfuse
