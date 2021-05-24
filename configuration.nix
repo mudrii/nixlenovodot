@@ -44,7 +44,7 @@ in
   boot = {
     supportedFilesystems = [ "ntfs" ];
     #kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = unstable.linuxPackages_latest;
+    #kernelPackages = unstable.linuxPackages_latest;
     blacklistedKernelModules = [ "nouveau" ];
     cleanTmpDir = true;
     #extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
@@ -1021,6 +1021,7 @@ in
         unstable.tflint
         unstable.kubernetes
         unstable.kubernetes-helm
+        unstable.kubeseal
         unstable.helmfile
         unstable.helmsman
         unstable.kind
@@ -1091,6 +1092,7 @@ in
         psensor
         firefox-bin
         chromium
+        ungoogled-chromium
         qutebrowser
         brave
         unstable.amfora
@@ -1211,8 +1213,10 @@ in
         };
       };
     };
+
     overlays = [
       (self: super: {
+
         element-desktop = super.element-desktop.overrideAttrs (old: rec {
           version = "1.7.27";
           src = pkgs.fetchFromGitHub {
@@ -1266,5 +1270,19 @@ in
       # dates = "Sun *-*-* 04:00:00";
     };
   };
-
+  /*
+  system = {
+    autoUpgrade = {
+      enable = true;
+      allowReboot = true;
+      flake = self.outPath;
+      flags = [
+        "--recreate-lock-file"
+        "--no-write-lock-file"
+        "-L" # print build logs
+       ];
+      dates = "daily";
+    };
+  }:
+  */
 }
