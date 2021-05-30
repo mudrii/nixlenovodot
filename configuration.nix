@@ -7,6 +7,12 @@
 let
   unstable = import <unstable> {
     config.allowUnfree = true;
+    overlays = [
+      (_: prev: {
+        linuxPackagesFor = kernel:
+          (prev.linuxPackagesFor kernel).extend (_: _: { ati_drivers_x11 = null; });
+      })
+    ];
   };
 in
 
@@ -19,7 +25,7 @@ in
       <home-manager/nixos>
       # "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos"
       ./home-manager.nix
-      # ./containers.nix      
+      # ./containers.nix
     ];
 
   /*
@@ -44,12 +50,12 @@ in
   boot = {
     supportedFilesystems = [ "ntfs" ];
     #kernelPackages = pkgs.linuxPackages_latest;
-    #kernelPackages = unstable.linuxPackages_latest;
+    kernelPackages = unstable.linuxPackages_latest;
     blacklistedKernelModules = [ "nouveau" ];
     cleanTmpDir = true;
     #extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
     #kernelParams = [ "nvidia-drm.modeset=1" ];
-      
+
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -116,12 +122,12 @@ in
     #    address = "192.168.1.11";
     #    prefixLength = 24;
     #  }];
-    networkmanager = { 
+    networkmanager = {
       enable = true;
     #  unmanaged = [ "enp0s31f6" ];
     };
     # Enables wireless support via wpa_supplicant.
-    # wireless.enable = true;  
+    # wireless.enable = true;
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -172,7 +178,7 @@ in
       login.fprintAuth = true;
       xautolock.fprintAuth = true;
     };
-    */  
+    */
 
     # Example how to use pam
     /*
@@ -188,24 +194,24 @@ in
     */
   };
 
-  /*  
+  /*
     powerManagement = {
       enable = true;
       powertop.enable = true;
-      cpuFreqGovernor =  "ondemand"; # "powersave", "performance" 
-      cpuFreqGovernor =  "powersave"; # "ondemand", "performance" 
+      cpuFreqGovernor =  "ondemand"; # "powersave", "performance"
+      cpuFreqGovernor =  "powersave"; # "ondemand", "performance"
     };
   */
 
-  fileSystems."/home/mudrii/mnt/nvme" = { 
+  fileSystems."/home/mudrii/mnt/nvme" = {
     device = "/dev/nvme1n1p2";
-    fsType = "ext4"; 
+    fsType = "ext4";
     options = [ "rw" "nofail" "noatime" "nodiratime" "discard" "auto" "exec" ];
   };
-  
-  fileSystems."/home/mudrii/.bitmonero" = { 
+
+  fileSystems."/home/mudrii/.bitmonero" = {
     device = "/dev/nvme1n1p1";
-    fsType = "ext4"; 
+    fsType = "ext4";
     options = [ "rw" "nofail" "noatime" "nodiratime" "discard" "auto" "exec" ];
     #options = [ "rw" "uid=1000"];
   };
@@ -216,7 +222,7 @@ in
     vim.defaultEditor = true;
     mtr.enable = true;
     nm-applet.enable = true;
-    
+
     ssh = {
       startAgent = false;
       forwardX11 = true;
@@ -303,7 +309,7 @@ in
     pcscd.enable = true;  # needed for YubiKey
     xmr-stak.cudaSupport = true;
     lorri.enable = true;
-    
+
     /*
     # Finger Print unlock login
     fprintd = {
@@ -318,12 +324,12 @@ in
     };
 
     udev ={
-      packages = [ 
+      packages = [
         pkgs.yubikey-personalization  # needed for YubiKey
         pkgs.libu2f-host              # needed for Yubikey
       ];
-      path = [ 
-        pkgs.coreutils 
+      path = [
+        pkgs.coreutils
       ];
       extraRules = ''
           ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chgrp video %S%p/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w %S%p/brightness"
@@ -367,8 +373,8 @@ in
     thermald = {
       enable = true;
       configFile = builtins.toFile "thermal-conf.xml" ''
-         <!-- BEGIN --> 
-         <ThermalConfiguration> 
+         <!-- BEGIN -->
+         <ThermalConfiguration>
          <Platform>
                 <Name> Auto generated </Name>
                 <ProductName>Standard PC (Q35 + ICH9, 2009)</ProductName>
@@ -419,13 +425,13 @@ in
       ];
     };
 
-    /*    
+    /*
     timesyncd = {
       enable = true;
-      servers = [ 
-        "0.sg.pool.ntp.org" 
-        "1.sg.pool.ntp.org" 
-        "2.sg.pool.ntp.org" 
+      servers = [
+        "0.sg.pool.ntp.org"
+        "1.sg.pool.ntp.org"
+        "2.sg.pool.ntp.org"
         "3.sg.pool.ntp.org"
       ];
     };
@@ -481,7 +487,7 @@ in
         # DEVICES_TO_ENABLE_ON_WIFI_DISCONNECT=""
         # DEVICES_TO_ENABLE_ON_WWAN_DISCONNECT=""
 
-        # Set battery charge thresholds for main battery (BAT0) and auxiliary/Ultrabay battery (BAT1). Values are given as a percentage of the full capacity. A value of 0 is translated to the hardware defaults 96/100%.        
+        # Set battery charge thresholds for main battery (BAT0) and auxiliary/Ultrabay battery (BAT1). Values are given as a percentage of the full capacity. A value of 0 is translated to the hardware defaults 96/100%.
         START_CHARGE_THRESH_BAT0=40;
         STOP_CHARGE_THRESH_BAT0=70;
 
@@ -654,7 +660,7 @@ in
         */
         /*
         setupCommands = ''
-          ${pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource modesetting NVIDIA-0 
+          ${pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource modesetting NVIDIA-0
           ${pkgs.xorg.xrandr}/bin/xrandr --auto
         '';
         */
@@ -751,7 +757,7 @@ in
   # Set your time zone.
   time.timeZone = "Asia/Singapore";
 
-  #  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
+  #  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
   #  environment.systemPackages = with pkgs; [ xorg.xbacklight ];
 
   environment = {
@@ -767,15 +773,15 @@ in
       HWMON_MODULES="coretemp"
     '';
 
-    # YubiKey SSH and GPG support    
-        
+    # YubiKey SSH and GPG support
+
     shellInit = ''
       export GPG_TTY="$(tty)"
       gpg-connect-agent /bye
       export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
     #  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
      '';
-    
+
     variables = {
       # Preferred applications
       EDITOR = "nvim";
@@ -831,6 +837,7 @@ in
       which
       nmap
       wget
+      curl
       speedtest-cli
       neovim
       # micro
@@ -851,6 +858,7 @@ in
       jdupes
       ag
       htop
+      gtop
       ytop
       iftop
       atop
@@ -1014,6 +1022,7 @@ in
         unstable.gitAndTools.gitFull
         unstable.gitAndTools.git-hub
         unstable.gitAndTools.gh
+        unstable.git-crypt
         unstable.git-lfs
         unstable.terraform_0_15
         unstable.terraform-ls
@@ -1099,6 +1108,7 @@ in
         unstable.lagrange
         unstable.vscode
         unstable.sublime3
+        unstable.sublime-merge
         unstable.insomnia
         slack
         vlc
@@ -1169,8 +1179,8 @@ in
   };
 
   nix = {
-    #package = pkgs.nixUnstable; 
-    package = pkgs.nixFlakes; 
+    #package = pkgs.nixUnstable;
+    package = pkgs.nixFlakes;
     useSandbox = true;
     autoOptimiseStore = true;
     readOnlyStore = false;
@@ -1188,18 +1198,18 @@ in
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d --max-freed $((64 * 1024**3))";
-      # dates = "Mon *-*-* 06:00:00";      
+      # dates = "Mon *-*-* 06:00:00";
     };
 
     optimise = {
       automatic = true;
       dates = [ "weekly" ];
     };
-    
+
   };
 
   nixpkgs = {
-    
+
     config = {
       pulseaudio = true;
       allowBroken = true;
@@ -1226,6 +1236,7 @@ in
             sha256 = "0rgsc2cc1v6gjsklwvsjlqq9a8j9j80h9ac0jkvf9lhq33f3c57k";
           };
         });
+
       /*
       fwup = super.fwup.overrideAttrs (old: {
         src = super.fetchFromGitHub {
