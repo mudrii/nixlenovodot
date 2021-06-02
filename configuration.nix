@@ -7,12 +7,14 @@
 let
   unstable = import <unstable> {
     config.allowUnfree = true;
+/*
     overlays = [
       (_: prev: {
         linuxPackagesFor = kernel:
           (prev.linuxPackagesFor kernel).extend (_: _: { ati_drivers_x11 = null; });
       })
-    ];
+      ];
+*/      
   };
 in
 
@@ -153,7 +155,7 @@ in
 
   # TPM has hardware RNG
   security = {
-    rngd.enable = true;
+    #rngd.enable = true; # Nixos-20.09
 
     sudo = {
       enable = true;
@@ -254,11 +256,10 @@ in
       };
       # shellInit = "neofetch";
       # functions = { fish_greeting = ""; };
-      /*
+     /*
       promptInit = ''
         any-nix-shell fish --info-right | source
-      '';
-      */
+      '';*/
     };
 
     nano.nanorc = ''
@@ -303,7 +304,8 @@ in
     fwupd.enable = true;
     fstrim.enable = true;
     sysstat.enable = true;
-    gnome3.gnome-keyring.enable = true;
+    gnome.gnome-keyring.enable = true;
+    #gnome3.gnome-keyring.enable = true; # Nixos-20.09
     fail2ban.enable = true;
     emacs.enable = true;
     pcscd.enable = true;  # needed for YubiKey
@@ -639,11 +641,21 @@ in
 
       libinput = {
         enable = true;
-        disableWhileTyping = true;
+/*      
+        disableWhileTyping = true; # NixOs 20.09
         naturalScrolling = false;
         additionalOptions = ''
-          Option "PalmDetection" "True"
-        '';
+        Option "PalmDetection" "True"
+         '';
+*/
+      touchpad = {
+          disableWhileTyping = true;
+          naturalScrolling = false;
+          additionalOptions = ''
+            Option "PalmDetection" "True"
+          '';
+        };
+
       };
 
       desktopManager = {
@@ -720,7 +732,8 @@ in
   };
 
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
+    #enableFontDir = true; # Nixos-20.09
     enableGhostscriptFonts = true;
 
     fonts = with pkgs; [
@@ -859,7 +872,6 @@ in
       ag
       htop
       gtop
-      ytop
       iftop
       atop
       nethogs
@@ -1001,6 +1013,8 @@ in
         unstable.kitty
         unstable.alacritty
         unstable.fish
+        unstable.bpytop
+        unstable.glances
         neofetch
         ranger
         poppler_utils
@@ -1051,6 +1065,7 @@ in
         signal-desktop
         kubectx
         dep
+        #poetry
         /*
         (unstable.terraform.withPlugins(p: with p; [
           archive
@@ -1066,13 +1081,15 @@ in
         ]))
         */
         # (lowPrio unstable.python39Full)
-        python3Full
+        python38Full
         #python39Full
         #python39Packages.pip
+        #python38Packages.poetry
+        poetry
         (
-          python3.withPackages (
+          python38.withPackages (
             ps: with ps; [
-              poetry
+              #poetry
               pip
               powerline
               pygments
@@ -1273,7 +1290,8 @@ in
   # servers. You should change this only after NixOS release notes say you
   # should.
   system = {
-    stateVersion = "20.09"; # Did you read the comment?
+    stateVersion = "21.05"; # Did you read the comment?
+    #stateVersion = "20.09"; # Did you read the comment?
     autoUpgrade = {
       enable = true;
       dates = "weekly";

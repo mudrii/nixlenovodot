@@ -25,6 +25,14 @@ in
           enableFishIntegration = true;
         };
         */
+        /*
+        fish = {
+          enable = true;
+          plugins = [
+            {}
+          ]
+        };
+        */
         fzf = {
           enable = true;
           enableFishIntegration = true;
@@ -249,7 +257,8 @@ in
       };
 
       home = {
-        stateVersion = "20.09";
+        #stateVersion = "20.09";
+        stateVersion = "21.05";
         sessionVariables = {
           EDITOR = "nvim";
           SHELL = "fish";
