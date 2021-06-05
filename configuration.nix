@@ -14,7 +14,7 @@ let
           (prev.linuxPackagesFor kernel).extend (_: _: { ati_drivers_x11 = null; });
       })
       ];
-*/      
+*/
   };
 in
 
@@ -51,8 +51,8 @@ in
 
   boot = {
     supportedFilesystems = [ "ntfs" ];
-    #kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = unstable.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = unstable.linuxPackages_latest;
     blacklistedKernelModules = [ "nouveau" ];
     cleanTmpDir = true;
     #extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
@@ -227,8 +227,8 @@ in
 
     ssh = {
       startAgent = false;
-      forwardX11 = true;
-      setXAuthLocation = true;
+      #forwardX11 = true;
+      #setXAuthLocation = true;
     };
 
     gnupg.agent = {
@@ -641,7 +641,7 @@ in
 
       libinput = {
         enable = true;
-/*      
+/*
         disableWhileTyping = true; # NixOs 20.09
         naturalScrolling = false;
         additionalOptions = ''
@@ -977,6 +977,7 @@ in
       mv = "mv -i";
       nixcl = "sudo nix-store --optimise -v && sudo nix-collect-garbage -d";
       nixup = "sudo nix-channel --update && sudo nixos-rebuild switch";
+      nixts = "sudo nix-channel --update && sudo nixos-rebuild test";
       nixg = "git --git-dir=$HOME/src/nixlenovodot/ --work-tree=/etc/nixos";
       py = "python";
       ping = "ping -c3";
@@ -1034,7 +1035,6 @@ in
         unstable.awscli
         unstable.pulumi-bin
         unstable.gitAndTools.gitFull
-        unstable.gitAndTools.git-hub
         unstable.gitAndTools.gh
         unstable.git-crypt
         unstable.git-lfs
