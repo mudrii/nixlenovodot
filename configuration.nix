@@ -808,7 +808,7 @@ in
       efivar
       chkrootkit
       lynis
-      nixfmt
+#      nixfmt
       nix-index
       nixpkgs-fmt
       nixpkgs-lint
