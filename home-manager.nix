@@ -122,7 +122,8 @@ in
           vimAlias = true;
           extraConfig = builtins.readFile dotfiles/.vimrc;
           plugins = with pkgs; [
-            vimPlugins.vim-nix
+#            vimPlugins.vim-nix
+            vimPlugins.vim-addon-nix
             vimPlugins.vim-fish
             vimPlugins.vim-airline
             vimPlugins.vim-airline-themes
