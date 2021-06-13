@@ -155,8 +155,6 @@ in
 
   # TPM has hardware RNG
   security = {
-    #rngd.enable = true; # Nixos-20.09
-
     sudo = {
       enable = true;
       wheelNeedsPassword = false;
@@ -299,15 +297,14 @@ in
 
   services = {
     # localtime.enable = true;
-    urxvtd.enable = true;
+    #urxvtd.enable = true;
     blueman.enable = true;
     fwupd.enable = true;
     fstrim.enable = true;
     sysstat.enable = true;
     gnome.gnome-keyring.enable = true;
-    #gnome3.gnome-keyring.enable = true; # Nixos-20.09
     fail2ban.enable = true;
-    emacs.enable = true;
+    #emacs.enable = true;
     pcscd.enable = true;  # needed for YubiKey
     xmr-stak.cudaSupport = true;
     lorri.enable = true;
@@ -641,13 +638,6 @@ in
 
       libinput = {
         enable = true;
-/*
-        disableWhileTyping = true; # NixOs 20.09
-        naturalScrolling = false;
-        additionalOptions = ''
-        Option "PalmDetection" "True"
-         '';
-*/
       touchpad = {
           disableWhileTyping = true;
           naturalScrolling = false;
@@ -733,7 +723,6 @@ in
 
   fonts = {
     fontDir.enable = true;
-    #enableFontDir = true; # Nixos-20.09
     enableGhostscriptFonts = true;
 
     fonts = with pkgs; [
@@ -828,8 +817,12 @@ in
       graphviz
       (lowPrio nix-prefetch-git)
       nix-prefetch-scripts
+      #qemu
+      #qemu-utils
+      qemu_full
       unstable.virt-manager
       unstable.virt-viewer
+      virt-top
       # undervolt
       acpica-tools
       patchelf
@@ -934,9 +927,9 @@ in
       protonvpn-gui
       openvpn
       wireguard
-      wireshark-cli
-      wireshark
-      aircrack-ng
+      #wireshark-cli
+      #wireshark
+      #aircrack-ng
       gksu
       unstable.gopass
       unstable.xmrig
@@ -1005,7 +998,7 @@ in
       home = "/home/mudrii";
       shell = pkgs.fish;
       description = "mudrii";
-      extraGroups = [ "wheel" "docker" "audio" "video" "tty" "input" "networkmanager" "libvirtd" "kvm" "disk" ];
+      extraGroups = [ "wheel" "docker" "audio" "video" "tty" "input" "networkmanager" "libvirtd" "disk" ];
       # mkpasswd -m sha-512 password
       hashedPassword = "$6$ewXNcoQRNG$czTic9vE8CGH.eo4mabZsHVRdmTjtJF4SdDnIK0O/4STgzB5T2nD3Co.dRpVS3/uDD24YUxWrTDy2KRv7m/3N1";
       openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCzc7Xx3FVqz2cV1qzkPFV9DmfXCvS98HWs6nzcZ+1zMQDpZUuSGY2hV8UyXgiitogLl3BTaKztvBmrzh3FeeRHYDX39eR+tvcL7mY+qIqUwyCrDcrXC+KHuMVcYWJPJBx+enlId/ZbBgzz4SpBTOVANGDv1AhkNhl1CDfSrIOSdoRdhQpcYqtjwmiy/giGhfwNwtTGFVJNXG5CZEtyKRyjN43dX12/g6eEThLpjAS7QxF8pCzLh754rjD4V4Qmg/t+BawOglSyNaqEBtdyd0xiI353hzdNG4U+6V3yPYKSdkZzHaGACwCNMKSfrF7IrIQtUc5d9b0H+XEjpKzPWaZWXg9Io/vKhSTK4brXeAnsck4kbWYj1RiU6noAZNZRleM8fMO6UdwzLZzrxGMOBFSSZHHUlgLEjadkc2kmGwvXx5bmEUXMCAb7jUIzv+TEoOcJfCj8xUGxCQtlk9kIguV0l8BWY0B6iwyNn8XM7taLdfIEMACkuD9v0y7SCBWRm6DL3PoVijnGX+g3ox1bGvx/9+4h1HbPH3POj5/C2Vh6kWtXFKTVHSrU4m8HsV94slD4ILTyfJxGWgL2TzjSJz3eKUlVNe9r1Pv14CDb2XaN4lGGxWV2aYDYwCwNaZyJTOXi/9tiflfmcHIiYRoABrss6nssfL2f6fNa0hm0ZAUClw== mudrii@arch" ];
@@ -1291,7 +1284,6 @@ in
   # should.
   system = {
     stateVersion = "21.05"; # Did you read the comment?
-    #stateVersion = "20.09"; # Did you read the comment?
     autoUpgrade = {
       enable = true;
       dates = "weekly";

@@ -271,6 +271,7 @@ in
           #LESS = "-R";
         };
         file = {
+          ".config/libvirt/libvirt.conf".source = dotfiles/libvirt.conf;
           ".config/nixpkgs/home.nix".source = dotfiles/home.nix;
           ".bashrc".source = dotfiles/.bashrc;
           ".inputrc".source = dotfiles/.inputrc;
