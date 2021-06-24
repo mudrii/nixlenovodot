@@ -14,3 +14,7 @@ Host localhost
 Host 127.0.0.1
    HostName 127.0.0.1
    User root
+
+Host nixtst
+   HostName 192.168.122.15
+   User mudrii

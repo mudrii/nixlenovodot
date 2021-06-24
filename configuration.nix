@@ -704,6 +704,7 @@ in
           obs-studio
           libva-utils
           gnome3.networkmanagerapplet
+          gimp
         ];
       };
     };
@@ -811,6 +812,7 @@ in
       nix-tree
       nixFlakes
       nixos-generators
+      nvd
       rnix-lsp
       unstable.nix-simple-deploy
       niv
@@ -948,7 +950,7 @@ in
       fgrep = "fgrep --color=auto";
       gcl = "gcloud";
       grep = "grep --color=auto";
-      gadcm = "git add -A; and git commit";
+      gadc = "git add -A; and git commit";
       gad = "git add .";
       gcm = "git commit";
       gdf = "git diff";
@@ -1117,7 +1119,8 @@ in
         unstable.amfora
         unstable.lagrange
         unstable.vscode
-        unstable.sublime3
+        vscodium
+        unstable.sublime4
         unstable.sublime-merge
         unstable.insomnia
         slack

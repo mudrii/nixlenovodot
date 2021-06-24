@@ -41,7 +41,7 @@ in
         direnv = {
           enable = true;
           enableFishIntegration = true;
-          enableNixDirenvIntegration = true;
+          nix-direnv.enable = true;
         };
 
         command-not-found = { enable = true; };
@@ -143,6 +143,7 @@ in
             vimPlugins.coc-eslint
             vimPlugins.coc-tsserver
             vimPlugins.coc-snippets
+            vimPlugins.coc-spell-checker
             vimPlugins.coc-pairs
             vimPlugins.coc-prettier
             vimPlugins.coc-markdownlint
