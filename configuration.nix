@@ -848,7 +848,7 @@ in
       wget
       curl
       speedtest-cli
-      neovim
+      unstable.neovim
       # micro
       commonsCompress
       libarchive
@@ -1041,7 +1041,7 @@ in
         unstable.kubernetes
         unstable.kubernetes-helm
         unstable.kubeseal
-        unstable.helmfile
+        #unstable.helmfile
         unstable.helmsman
         unstable.kind
         unstable.kube3d
@@ -1187,6 +1187,7 @@ in
         unstable.ledger
         unstable.ledger-web
         unstable.ledger-live-desktop
+        unstable.audacity
         unstable.nodejs
       ];
     };
