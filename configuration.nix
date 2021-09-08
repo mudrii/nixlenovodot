@@ -310,6 +310,20 @@ in
     xmr-stak.cudaSupport = true;
     lorri.enable = true;
 
+    logrotate = {
+      enable = true;
+      extraConfig = ''
+        compress
+        create
+        daily
+        dateext
+        delaycompress
+        missingok
+        notifempty
+        rotate 31
+      '';
+    };
+
     /*
     # Finger Print unlock login
     fprintd = {
@@ -317,12 +331,12 @@ in
       package = unstable.pkgs.fprintd;
     };
     */
-/*
+    /*
     clamav = {
       daemon.enable = true;
       updater.enable = true;
     };
-*/
+    */
     udev ={
       packages = [
         pkgs.yubikey-personalization  # needed for YubiKey
@@ -442,6 +456,8 @@ in
       permitRootLogin = "no";
       passwordAuthentication = false;
       challengeResponseAuthentication = false;
+      forwardX11 = true;
+      ports = [2022];
     };
 
     # Enable CUPS to print documents.
@@ -729,29 +745,29 @@ in
 
     fonts = with pkgs; [
       corefonts
-      inconsolata
-      unifont
+#      inconsolata
+#      unifont
       ubuntu_font_family
-      symbola
+#      symbola
       nerdfonts
       freefont_ttf
       powerline-fonts
-      font-awesome
-      font-awesome_4
+#      font-awesome
+#      font-awesome_4
       dejavu_fonts
       google-fonts
       noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      liberation_ttf
-      fira-code
-      fira-code-symbols
-      mplus-outline-fonts
-      dina-font
-      proggyfonts
+#      noto-fonts-cjk
+#      noto-fonts-emoji
+#      liberation_ttf
+#      fira-code
+#      fira-code-symbols
+#      mplus-outline-fonts
+#      dina-font
+#      proggyfonts
       # emojione
-      twemoji-color-font
-      mononoki
+#      twemoji-color-font
+#      mononoki
     ];
   };
 
@@ -811,7 +827,7 @@ in
       nixpkgs-pytools
       nix-update
       nix-tree
-      nixFlakes
+      #nixFlakes
       nixos-generators
       nvd
       rnix-lsp
