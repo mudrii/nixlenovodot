@@ -58,6 +58,11 @@ in
     #extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
     #kernelParams = [ "nvidia-drm.modeset=1" ];
 
+    kernel.sysctl = {
+      "vm.swappiness" = 10;
+      "vm.vfs_cache_pressure" = 50;
+    };
+
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
