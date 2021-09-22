@@ -151,7 +151,7 @@ in
     firewall = {
       # Or disable the firewall altogether.
       enable = true;
-      allowedTCPPorts = [ 22 80 443 ];
+      allowedTCPPorts = [ 22 80 443 2022 ];
       allowedUDPPorts = [ 53 ];
       allowPing = true;
       trustedInterfaces = [ "docker0" "virbr0" ];
@@ -1066,6 +1066,7 @@ in
         unstable.helmsman
         unstable.kind
         unstable.kube3d
+        unstable.dive
         unstable.lens
         unstable.docker-machine-kvm2
         unstable.minikube
@@ -1203,6 +1204,7 @@ in
         yubico-pam
         monero
         monero-gui
+        abiword
         unstable.xmrig
         unstable.xmr-stak
         unstable.ledger
@@ -1210,6 +1212,7 @@ in
         unstable.ledger-live-desktop
         unstable.audacity
         unstable.nodejs
+        unicode-paracode
       ];
     };
   };
