@@ -23,10 +23,6 @@ Host rasvi
    HostName 192.168.86.33
    User pi
 
-Host rasvi
-   HostName 192.168.1.10
-   User pi
-
 Host pihole
    HostName 192.168.86.22
    User pi
@@ -35,20 +31,24 @@ Host pihole
    HostName 192.168.1.12
    User pi
 
-Host rasppi1
+Host rasvi
    HostName 192.168.1.9
    User pi
 
-Host rasppi2
+Host rasppi1
    HostName 192.168.1.8
    User pi
 
-Host rasppi3
+Host rasppi2
    HostName 192.168.1.7
    User pi
 
-Host rasppi4
+Host rasppi3
    HostName 192.168.1.6
+   User pi
+
+Host rasppii4
+   HostName 192.168.1.4
    User pi
 
 Host rasmaster
