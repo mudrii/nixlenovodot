@@ -51,7 +51,7 @@ in
 
   boot = {
     supportedFilesystems = [ "ntfs" ];
-    #kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     #kernelPackages = unstable.linuxPackages_latest;
     blacklistedKernelModules = [ "nouveau" ];
     cleanTmpDir = true;
@@ -838,7 +838,6 @@ in
       nixpkgs-pytools
       nix-update
       nix-tree
-      #nixFlakes
       nixos-generators
       nvd
       rnix-lsp
@@ -1056,6 +1055,9 @@ in
         unstable.minio-client
         google-cloud-sdk-gce
         unstable.awscli
+        unstable.clojure
+        unstable.clojure-lsp
+#        pulumi-bin
         unstable.pulumi-bin
         unstable.gitAndTools.gitFull
         unstable.gitAndTools.gh
@@ -1084,7 +1086,7 @@ in
         unstable.k9s
         unstable.velero
         unstable.go
-        unstable.xmind
+        #unstable.xmind
         unstable.zoom-us
         unstable.teams
         signal-desktop
@@ -1106,13 +1108,13 @@ in
         ]))
         */
         # (lowPrio unstable.python39Full)
-        python38Full
-        #python39Full
-        #python39Packages.pip
+        #python3Full
+        python39Full
         #python38Packages.poetry
+        #unstable.python38Packages.pynvim
         poetry
         (
-          python38.withPackages (
+          python39.withPackages (
             ps: with ps; [
               #poetry
               pip
@@ -1121,7 +1123,7 @@ in
               yubico-client
               pygments-markdown-lexer
               xstatic-pygments
-              pylint
+              #pylint
               pandas
               #pycuda
               numpy
@@ -1133,7 +1135,6 @@ in
             ]
           )
         )
-        #unstable.python38Packages.pynvim
         aspell
         aspellDicts.en
         asciinema
@@ -1272,7 +1273,7 @@ in
         };
       };
     };
-
+/*
     overlays = [
       (self: super: {
 
@@ -1313,8 +1314,8 @@ in
         };
       });
       */
-      })
-    ];
+#      })
+#    ]; 
   };
 
   # This value determines the NixOS release with which your system is to be
