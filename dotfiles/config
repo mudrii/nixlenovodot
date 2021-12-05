@@ -49,13 +49,16 @@ bindsym $mod+Ctrl+d exec dmenu_run
 
 # start rofi (dmenu mode)
 #bindsym $mod+d exec i3-dmenu-desktop --dmenu='rofi -dmenu -i -lines 10 -eh 1 -width 50 -padding 50 -opacity "85" -font "Droid Sans 16"'
-bindsym $mod+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Droid Sans 14' -show-icons
+#bindsym $mod+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Droid Sans 14' -show-icons
+bindsym $mod+d exec rofi -show drun -sidebar-mode 
 
 # start rofi to run app as root
-bindsym $mod+Shift+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Droid Sans 14' -show-icons -run-command 'gksudo {cmd}'
+#bindsym $mod+Shift+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Droid Sans 14' -show-icons -run-command 'gksudo {cmd}'
+bindsym $mod+Shift+d exec rofi -show drun -sidebar-mode -run-command 'gksudo {cmd}'
 
 # start rofi (window mode)
-bindsym $mod+Tab exec rofi -show window -show-icons -i -lines 10 -eh 1 -width 50 -padding 50 -opacity "85" -font "Droid Sans 16"
+#bindsym $mod+Tab exec rofi -show window -show-icons -i -lines 10 -eh 1 -width 50 -padding 50 -opacity "85" -font "Droid Sans 16"
+bindsym $mod+Tab exec rofi -show window -i 
 
 # rofi networkmanager_dmenu
 bindsym $mod+n exec networkmanager_dmenu

@@ -292,7 +292,7 @@ in
 
     libvirtd = {
       enable = true;
-      qemuRunAsRoot = false;
+      qemu.runAsRoot = false;
     };
     /*
     lxd = {
@@ -716,13 +716,13 @@ in
           i3-gaps
           i3lock-fancy
           xautolock
-          rofi
+          # rofi
           numlockx
           # conky
           # rxvt_unicode
-          rxvt_unicode-with-plugins
-          (lowPrio urxvt_perls)
-          (lowPrio urxvt_font_size)
+          # rxvt_unicode-with-plugins
+          # (lowPrio urxvt_perls)
+          # (lowPrio urxvt_font_size)
           acpilight
           glxinfo
           pavucontrol
@@ -764,7 +764,7 @@ in
       freefont_ttf
       powerline-fonts
 #      font-awesome
-#      font-awesome_4
+      font-awesome_4
       dejavu_fonts
       google-fonts
       noto-fonts
@@ -937,7 +937,7 @@ in
       mtr
       nftables
       psmisc
-      ripgrep
+      ripgrep-all
       du-dust
       exa
       srm
@@ -1149,13 +1149,13 @@ in
         ungoogled-chromium
         qutebrowser
         brave
-        unstable.amfora
+#        unstable.amfora
         unstable.lagrange
         unstable.vscode
-        vscodium
+#        vscodium
         unstable.sublime4
         unstable.sublime-merge
-        unstable.insomnia
+#        unstable.insomnia
         slack
         vlc
         filezilla
@@ -1168,11 +1168,11 @@ in
         procs
         fd
         skypeforlinux
-        zathura
+#        zathura
         mpv
         pv
         feh
-        weechat
+#        weechat
         gcc
         gnumake
         gnupg
@@ -1199,7 +1199,7 @@ in
         graphviz
         scrcpy
         unstable.pcmanfm
-        unstable.mucommander
+        mucommander
         unstable.hexchat
         unstable.grsync
         unstable.luckybackup
@@ -1315,7 +1315,7 @@ in
       });
       */
 #      })
-#    ]; 
+#    ];
   };
 
   # This value determines the NixOS release with which your system is to be
@@ -1324,7 +1324,7 @@ in
   # should.
   system = {
     copySystemConfiguration = true;
-    stateVersion = "21.05"; # Did you read the comment?
+    stateVersion = "21.11"; # Did you read the comment?
     autoUpgrade = {
       enable = true;
       dates = "weekly";

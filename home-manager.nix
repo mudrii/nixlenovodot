@@ -10,6 +10,7 @@ in
 
   imports = [
     ./dotfiles/.tmux.conf.nix
+    ./dotfiles/rofi.nix
   ];
 
   home-manager = {
@@ -33,6 +34,22 @@ in
           ]
         };
         */
+/*        
+        rofi = {
+          enable = true;
+          package = pkgs.rofi;
+          extraConfig = {
+            modi = "window,run,ssh,calc,drun";
+            show-icons =  true;
+            scrollbar = false;
+          };
+          font = "Droid Sans 14";
+          theme = "glue_pro_blue";
+          location = "center";
+          terminal = "${pkgs.kitty}/bin/kitty";
+          plugins = [ pkgs.rofi-calc ];
+        };
+*/
         fzf = {
           enable = true;
           enableFishIntegration = true;
@@ -260,7 +277,7 @@ in
 
       home = {
         #stateVersion = "20.09";
-        stateVersion = "21.05";
+        stateVersion = "21.11";
         sessionVariables = {
           EDITOR = "nvim";
           SHELL = "fish";
@@ -280,7 +297,7 @@ in
           ".git-completion.bash".source = dotfiles/.git-completion.bash;
           ".git-prompt.sh".source = dotfiles/.git-prompt.sh;
           ".config/neofetch/config.conf".source = dotfiles/config.conf;
-          ".Xresources".source = dotfiles/.Xresources;
+          #".Xresources".source = dotfiles/.Xresources;
           ".config/fontconfig/fonts.conf".source = dotfiles/fonts.conf;
           ".config/lf/lfrc".source = dotfiles/lfrc;
           ".gnupg/gpg-agent.conf".source = dotfiles/gpg-agent.conf;
