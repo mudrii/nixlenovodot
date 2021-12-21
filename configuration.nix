@@ -515,7 +515,7 @@ in
         # DEVICES_TO_ENABLE_ON_WWAN_DISCONNECT=""
 
         # Set battery charge thresholds for main battery (BAT0) and auxiliary/Ultrabay battery (BAT1). Values are given as a percentage of the full capacity. A value of 0 is translated to the hardware defaults 96/100%.
-        START_CHARGE_THRESH_BAT0=40;
+        START_CHARGE_THRESH_BAT0=30;
         STOP_CHARGE_THRESH_BAT0=70;
 
         # Control battery feature drivers:
@@ -1063,9 +1063,9 @@ in
         unstable.gitAndTools.gh
         unstable.git-crypt
         unstable.git-lfs
-        unstable.terraform_0_15
-        unstable.terraform-ls
-        #unstable.terraform-lsp
+        unstable.terraform
+        #unstable.terraform-ls
+        unstable.terraform-lsp
         unstable.tflint
         unstable.kubernetes
         unstable.kubernetes-helm
@@ -1085,7 +1085,7 @@ in
         unstable.kustomize
         unstable.k9s
         unstable.velero
-        unstable.go
+        #unstable.go
         #unstable.xmind
         unstable.zoom-us
         unstable.teams
@@ -1109,8 +1109,8 @@ in
         */
         # (lowPrio unstable.python39Full)
         #python3Full
-        python39Full
-        #python38Packages.poetry
+        #python39Full
+        #python39Packages.poetry
         #unstable.python38Packages.pynvim
         poetry
         (
@@ -1124,13 +1124,13 @@ in
               pygments-markdown-lexer
               xstatic-pygments
               #pylint
-              pandas
+              #pandas
               #pycuda
-              numpy
-              opencv4
-              scipy
-              matplotlib
-              jupyter
+              #numpy
+              #opencv4
+              #scipy
+              #matplotlib
+              #jupyter
               pynvim
             ]
           )
@@ -1145,10 +1145,12 @@ in
         psensor
         firefox-bin
         thunderbird
+        libreoffice
         chromium
         ungoogled-chromium
         qutebrowser
         brave
+        shotcut
 #        unstable.amfora
         unstable.lagrange
         unstable.vscode
@@ -1187,10 +1189,12 @@ in
         spotify
         bookworm
         ltrace
+        /*
         (unstable.tor-browser-bundle-bin.override {
           mediaSupport = true;
           pulseaudioSupport = true;
         })
+        */
         unstable.keepassxc
         openconnect_openssl
         networkmanager-openconnect
@@ -1214,7 +1218,6 @@ in
         yubico-pam
         monero
         monero-gui
-        abiword
         unstable.xmrig
         unstable.xmr-stak
         unstable.ledger
