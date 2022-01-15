@@ -310,6 +310,7 @@ in
   services = {
     # localtime.enable = true;
     #urxvtd.enable = true;
+    #vnstat.enable = true;
     blueman.enable = true;
     fwupd.enable = true;
     fstrim.enable = true;
@@ -712,7 +713,7 @@ in
           i3lock #default i3 screen locker
           # i3status # gives you the default i3 status bar
           # i3blocks #if you are planning on using i3blocks over i3status
-          unstable.i3status-rust
+          i3status-rust
           i3-gaps
           i3lock-fancy
           xautolock
@@ -953,7 +954,7 @@ in
       nvme-cli
       ncurses
       protonvpn-cli
-      protonvpn-gui
+      #protonvpn-gui
       openvpn
       wireguard
       #wireshark-cli
@@ -1145,7 +1146,8 @@ in
         psensor
         firefox-bin
         thunderbird
-        libreoffice
+        #libreoffice
+        onlyoffice-bin
         chromium
         ungoogled-chromium
         qutebrowser

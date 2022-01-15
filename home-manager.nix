@@ -34,7 +34,7 @@ in
           ]
         };
         */
-/*        
+/*
         rofi = {
           enable = true;
           package = pkgs.rofi;
