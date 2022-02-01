@@ -56,6 +56,7 @@ in
     blacklistedKernelModules = [ "nouveau" ];
     cleanTmpDir = true;
     #extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
+    #extraModulePackages = [ config.boot.kernelPackages.wireguard ];
     #kernelParams = [ "nvidia-drm.modeset=1" ];
 
     kernel.sysctl = {
@@ -288,6 +289,7 @@ in
       enable = true;
       #extraPackages = [ pkgs.gvisor ];
       enableNvidia = true;
+      dockerCompat = true;
     };
 
     libvirtd = {
@@ -321,6 +323,7 @@ in
     pcscd.enable = true;  # needed for YubiKey
     xmr-stak.cudaSupport = true;
     lorri.enable = true;
+    #autorandr.enable = true;
 
     logrotate = {
       enable = true;
@@ -664,6 +667,7 @@ in
       videoDrivers = [ "nvidia" ];
       layout = "us";
       xkbOptions = "eurosign:e";
+      dpi = 90;
 
       libinput = {
         enable = true;
@@ -957,6 +961,7 @@ in
       #protonvpn-gui
       openvpn
       wireguard
+      wireguard-tools
       #wireshark-cli
       #wireshark
       #aircrack-ng
@@ -1057,7 +1062,8 @@ in
         google-cloud-sdk-gce
         unstable.awscli
         unstable.clojure
-        unstable.clojure-lsp
+        clojure-lsp
+        #unstable.clojure-lsp
 #        pulumi-bin
         unstable.pulumi-bin
         unstable.gitAndTools.gitFull
@@ -1133,6 +1139,7 @@ in
               #matplotlib
               #jupyter
               pynvim
+              pyopenssl
             ]
           )
         )
@@ -1152,6 +1159,8 @@ in
         ungoogled-chromium
         qutebrowser
         brave
+        bitwarden
+        bitwarden-cli
         shotcut
 #        unstable.amfora
         unstable.lagrange
@@ -1167,6 +1176,7 @@ in
         home-manager
         fzf
         bat
+        ripgrep
         ripgrep-all
         tldr
         procs
