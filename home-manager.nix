@@ -11,6 +11,7 @@ in
   imports = [
     ./dotfiles/.tmux.conf.nix
     ./dotfiles/rofi.nix
+    ./dotfiles/i3status-rs.nix
   ];
 
   home-manager = {
@@ -317,7 +318,7 @@ in
           ".config/i3/workspace_4.json".source = dotfiles/workspace_4.json;
           ".config/i3/workspace_5.json".source = dotfiles/workspace_5.json;
           ".config/i3/workspace_6.json".source = dotfiles/workspace_6.json;
-          ".config/i3status-rs/config.toml".source = dotfiles/config.toml;
+          #".config/i3status-rs/config.toml".source = dotfiles/config.toml;
           ".config/networkmanager-dmenu/config.ini".source = dotfiles/config.ini;
           ".config/conky/conky.conf".source = dotfiles/conky.conf;
           ".config/nixpkgs/config.nix".source = dotfiles/config.nix;

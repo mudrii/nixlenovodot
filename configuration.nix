@@ -717,7 +717,7 @@ in
           i3lock #default i3 screen locker
           # i3status # gives you the default i3 status bar
           # i3blocks #if you are planning on using i3blocks over i3status
-          i3status-rust
+          # i3status-rust
           i3-gaps
           i3lock-fancy
           xautolock
