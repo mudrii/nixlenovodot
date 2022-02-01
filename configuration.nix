@@ -324,6 +324,11 @@ in
     xmr-stak.cudaSupport = true;
     lorri.enable = true;
     #autorandr.enable = true;
+    upower.enable = true;
+
+    unbound = {
+      enable = true;
+    };
 
     logrotate = {
       enable = true;
