@@ -7,14 +7,14 @@
 let
   unstable = import <unstable> {
     config.allowUnfree = true;
-/*
-    overlays = [
+    /*
+      overlays = [
       (_: prev: {
-        linuxPackagesFor = kernel:
-          (prev.linuxPackagesFor kernel).extend (_: _: { ati_drivers_x11 = null; });
+      linuxPackagesFor = kernel:
+      (prev.linuxPackagesFor kernel).extend (_: _: { ati_drivers_x11 = null; });
       })
       ];
-*/
+    */
   };
 in
 
@@ -32,19 +32,19 @@ in
 
   /*
     imports = [
-      ./containers/gcpdrgn.nix
-      ./containers/gcpsndp.nix
-      ./containers/gcpion.nix
-      ./containers/awsndp.nix
-      ./containers/awsion.nix
+    ./containers/gcpdrgn.nix
+    ./containers/gcpsndp.nix
+    ./containers/gcpion.nix
+    ./containers/awsndp.nix
+    ./containers/awsion.nix
     ];
 
     containers = {
-      gcpdrgn.autoStart = false;
-      gcpsndp.autoStart = false;
-      gcpion.autoStart = true;
-      awsndp.autoStart = false;
-      awsion.autoStart = true;
+    gcpdrgn.autoStart = false;
+    gcpsndp.autoStart = false;
+    gcpion.autoStart = true;
+    awsndp.autoStart = false;
+    awsion.autoStart = true;
     };
   */
 
@@ -132,7 +132,7 @@ in
     #  }];
     networkmanager = {
       enable = true;
-    #  unmanaged = [ "enp0s31f6" ];
+      #  unmanaged = [ "enp0s31f6" ];
     };
     # Enables wireless support via wpa_supplicant.
     # wireless.enable = true;
@@ -141,11 +141,11 @@ in
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
     /*
-    nat = {
+      nat = {
       enable = true;
       internalInterfaces = ["ve-+"];
       externalInterface = "enp0s31f6";
-    };
+      };
     */
 
     # Open ports in the firewall.
@@ -161,6 +161,7 @@ in
 
   # TPM has hardware RNG
   security = {
+    polkit.enable = true;
     sudo = {
       enable = true;
       wheelNeedsPassword = false;
@@ -171,41 +172,41 @@ in
     # ykpersonalize -2 -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible
     # ykpamcfg -2 -v
     /*
-    pam.yubico = {
+      pam.yubico = {
       enable = true;
       debug = true;
       mode = "challenge-response";
       control = "required"; # for sudo
-    };
+      };
     */
     # Finger Print Auth //Not working 100% yet with fprint
     /*
-    pam.services = {
+      pam.services = {
       login.fprintAuth = true;
       xautolock.fprintAuth = true;
-    };
+      };
     */
 
     # Example how to use pam
     /*
-    pam.services = [
+      pam.services = [
       { name = "gnome_keyring"
       text = ''
-        auth     optional    ${gnome3.gnome_keyring}/lib/security/pam_gnome_keyring.so
-        session  optional    ${gnome3.gnome_keyring}/lib/security/pam_gnome_keyring.so auto_start
-        password  optional    ${gnome3.gnome_keyring}/lib/security/pam_gnome_keyring.so
+      auth     optional    ${gnome3.gnome_keyring}/lib/security/pam_gnome_keyring.so
+      session  optional    ${gnome3.gnome_keyring}/lib/security/pam_gnome_keyring.so auto_start
+      password  optional    ${gnome3.gnome_keyring}/lib/security/pam_gnome_keyring.so
       '';
       }
-    ];
+      ];
     */
   };
 
   /*
     powerManagement = {
-      enable = true;
-      powertop.enable = true;
-      cpuFreqGovernor =  "ondemand"; # "powersave", "performance"
-      cpuFreqGovernor =  "powersave"; # "ondemand", "performance"
+    enable = true;
+    powertop.enable = true;
+    cpuFreqGovernor =  "ondemand"; # "powersave", "performance"
+    cpuFreqGovernor =  "powersave"; # "ondemand", "performance"
     };
   */
 
@@ -260,10 +261,10 @@ in
       };
       # shellInit = "neofetch";
       # functions = { fish_greeting = ""; };
-     /*
-      promptInit = ''
+      /*
+        promptInit = ''
         any-nix-shell fish --info-right | source
-      '';*/
+        '';*/
     };
 
     nano.nanorc = ''
@@ -278,12 +279,12 @@ in
 
   # List services that you want to enable:
   virtualisation = {
-/*    docker = {
+    /*    docker = {
       enable = true;
       enableNvidia = true;
       autoPrune.enable = true;
       enableOnBoot = true;
-    };*/
+      };*/
 
     podman = {
       enable = true;
@@ -297,15 +298,15 @@ in
       qemu.runAsRoot = false;
     };
     /*
-    lxd = {
+      lxd = {
       enable = true;
-    };
+      };
     */
     /*
-    virtualbox = {
+      virtualbox = {
       host.enable = true;
       host.enableExtensionPack = true;
-    };
+      };
     */
   };
 
@@ -320,7 +321,7 @@ in
     gnome.gnome-keyring.enable = true;
     fail2ban.enable = true;
     #emacs.enable = true;
-    pcscd.enable = true;  # needed for YubiKey
+    pcscd.enable = true; # needed for YubiKey
     xmr-stak.cudaSupport = true;
     lorri.enable = true;
     #autorandr.enable = true;
@@ -345,30 +346,30 @@ in
     };
 
     /*
-    # Finger Print unlock login
-    fprintd = {
+      # Finger Print unlock login
+      fprintd = {
       enable = true;
       package = unstable.pkgs.fprintd;
-    };
+      };
     */
     /*
-    clamav = {
+      clamav = {
       daemon.enable = true;
       updater.enable = true;
-    };
+      };
     */
-    udev ={
+    udev = {
       packages = [
-        pkgs.yubikey-personalization  # needed for YubiKey
-        pkgs.libu2f-host              # needed for Yubikey
+        pkgs.yubikey-personalization # needed for YubiKey
+        pkgs.libu2f-host # needed for Yubikey
       ];
       path = [
         pkgs.coreutils
       ];
       extraRules = ''
-          ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chgrp video %S%p/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w %S%p/brightness"
-        '';
-      };
+        ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chgrp video %S%p/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w %S%p/brightness"
+      '';
+    };
 
 
     thinkfan = {
@@ -381,7 +382,7 @@ in
         (6,     66,     75)
         (7,     70,     95)
         (127,   90,     32767)
-      ''; */
+        ''; */
     };
 
     undervolt = {
@@ -460,15 +461,15 @@ in
     };
 
     /*
-    timesyncd = {
+      timesyncd = {
       enable = true;
       servers = [
-        "0.sg.pool.ntp.org"
-        "1.sg.pool.ntp.org"
-        "2.sg.pool.ntp.org"
-        "3.sg.pool.ntp.org"
+      "0.sg.pool.ntp.org"
+      "1.sg.pool.ntp.org"
+      "2.sg.pool.ntp.org"
+      "3.sg.pool.ntp.org"
       ];
-    };
+      };
     */
 
     openssh = {
@@ -477,7 +478,7 @@ in
       passwordAuthentication = false;
       challengeResponseAuthentication = false;
       forwardX11 = true;
-      ports = [2022];
+      ports = [ 2022 ];
     };
 
     # Enable CUPS to print documents.
@@ -524,16 +525,16 @@ in
         # DEVICES_TO_ENABLE_ON_WWAN_DISCONNECT=""
 
         # Set battery charge thresholds for main battery (BAT0) and auxiliary/Ultrabay battery (BAT1). Values are given as a percentage of the full capacity. A value of 0 is translated to the hardware defaults 96/100%.
-        START_CHARGE_THRESH_BAT0=30;
-        STOP_CHARGE_THRESH_BAT0=70;
+        START_CHARGE_THRESH_BAT0 = 30;
+        STOP_CHARGE_THRESH_BAT0 = 70;
 
         # Control battery feature drivers:
-        NATACPI_ENABLE=1;
-        TPACPI_ENABLE=1;
-        TPSMAPI_ENABLE=1;
+        NATACPI_ENABLE = 1;
+        TPACPI_ENABLE = 1;
+        TPSMAPI_ENABLE = 1;
 
         # Defines the disk devices the following parameters are effective for. Multiple devices are separated with blanks.
-        DISK_DEVICES="nvme0n1 nvme1n1";
+        DISK_DEVICES = "nvme0n1 nvme1n1";
 
         # Set the “Advanced Power Management Level”. Possible values range between 1 and 255.
         #  1 – max power saving / minimum performance – Important: this setting may lead to increased disk drive wear and tear because of excessive read-write head unloading (recognizable from the clicking noises)
@@ -542,8 +543,8 @@ in
         #  254 – minimum power saving / max performance (TLP standard setting on AC)
         #  255 – disable APM (not supported by some disk models)
         #  keep – special value to skip this setting for the particular disk (synonym: _)
-        DISK_APM_LEVEL_ON_AC="254 254";
-        DISK_APM_LEVEL_ON_BAT="128 128";
+        DISK_APM_LEVEL_ON_AC = "254 254";
+        DISK_APM_LEVEL_ON_BAT = "128 128";
 
         # Set the min/max/turbo frequency for the Intel GPU. Possible values depend on your hardware. See the output of tlp-stat -g for available frequencies.
         # INTEL_GPU_MIN_FREQ_ON_AC=0
@@ -581,18 +582,18 @@ in
         # CPU_HWP_ON_BAT=power;
 
         # Define the min/max P-state for Intel Core i processors. Values are stated as a percentage (0..100%) of the total available processor performance.
-        CPU_MIN_PERF_ON_AC=0;
-        CPU_MAX_PERF_ON_AC=100;
-        CPU_MIN_PERF_ON_BAT=0;
-        CPU_MAX_PERF_ON_BAT=30;
+        CPU_MIN_PERF_ON_AC = 0;
+        CPU_MAX_PERF_ON_AC = 100;
+        CPU_MIN_PERF_ON_BAT = 0;
+        CPU_MAX_PERF_ON_BAT = 30;
 
         # Disable CPU “turbo boost” (Intel) or “turbo core” (AMD) feature (0 = disable / 1 = allow).
-        CPU_BOOST_ON_AC=1;
-        CPU_BOOST_ON_BAT=0;
+        CPU_BOOST_ON_AC = 1;
+        CPU_BOOST_ON_BAT = 0;
 
         # Minimize number of used CPU cores/hyper-threads under light load conditions (1 = enabled, 0 = disabled). Depends on kernel and processor model.
-        SCHED_POWERSAVE_ON_AC=0;
-        SCHED_POWERSAVE_ON_BAT=1;
+        SCHED_POWERSAVE_ON_AC = 0;
+        SCHED_POWERSAVE_ON_BAT = 1;
 
         # Set Intel CPU energy/performance policy EPB. Possible values are (in order of increasing power saving):
         #   performance
@@ -605,8 +606,8 @@ in
         # ENERGY_PERF_POLICY_ON_BAT=power;
 
         # Timeout (in seconds) for the audio power saving mode (supports Intel HDA, AC97). A value of 0 disables power save.
-        SOUND_POWER_SAVE_ON_AC=0;
-        SOUND_POWER_SAVE_ON_BAT=1;
+        SOUND_POWER_SAVE_ON_AC = 0;
+        SOUND_POWER_SAVE_ON_BAT = 1;
 
         # Controls runtime power management for PCIe devices.
         # RUNTIME_PM_ON_AC=on;
@@ -622,7 +623,7 @@ in
         #    powersupersave
         # PCIE_ASPM_ON_AC=default;
         # PCIE_ASPM_ON_BAT=default;
-      #'';
+        #'';
       };
     };
 
@@ -658,11 +659,11 @@ in
       ];
     };
     /*
-    # Monitor plug n play
-    # https://github.com/phillipberndt/autorandr/blob/v1.0/README.md#how-to-use
-    autorandr = {
+      # Monitor plug n play
+      # https://github.com/phillipberndt/autorandr/blob/v1.0/README.md#how-to-use
+      autorandr = {
       enable = true;
-    };
+      };
     */
     xserver = {
       enable = true;
@@ -676,7 +677,7 @@ in
 
       libinput = {
         enable = true;
-      touchpad = {
+        touchpad = {
           disableWhileTyping = true;
           naturalScrolling = false;
           additionalOptions = ''
@@ -692,17 +693,17 @@ in
 
       displayManager = {
         /*
-        sessionCommands = ''
+          sessionCommands = ''
           ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
           Xft.dpi: 192
           EOF
-        '';
+          '';
         */
         /*
-        setupCommands = ''
+          setupCommands = ''
           ${pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource modesetting NVIDIA-0
           ${pkgs.xorg.xrandr}/bin/xrandr --auto
-        '';
+          '';
         */
         defaultSession = "none+i3";
         autoLogin.enable = true;
@@ -766,29 +767,29 @@ in
 
     fonts = with pkgs; [
       corefonts
-#      inconsolata
-#      unifont
+      #      inconsolata
+      #      unifont
       ubuntu_font_family
-#      symbola
+      #      symbola
       nerdfonts
       freefont_ttf
       powerline-fonts
-#      font-awesome
+      #      font-awesome
       font-awesome_4
       dejavu_fonts
       google-fonts
       noto-fonts
-#      noto-fonts-cjk
-#      noto-fonts-emoji
-#      liberation_ttf
-#      fira-code
-#      fira-code-symbols
-#      mplus-outline-fonts
-#      dina-font
-#      proggyfonts
+      #      noto-fonts-cjk
+      #      noto-fonts-emoji
+      #      liberation_ttf
+      #      fira-code
+      #      fira-code-symbols
+      #      mplus-outline-fonts
+      #      dina-font
+      #      proggyfonts
       # emojione
-#      twemoji-color-font
-#      mononoki
+      #      twemoji-color-font
+      #      mononoki
     ];
   };
 
@@ -817,11 +818,11 @@ in
     # YubiKey SSH and GPG support
 
     shellInit = ''
-      export GPG_TTY="$(tty)"
-      gpg-connect-agent /bye
-      export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
-    #  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-     '';
+        export GPG_TTY="$(tty)"
+        gpg-connect-agent /bye
+        export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
+      #  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    '';
 
     variables = {
       # Preferred applications
@@ -836,7 +837,7 @@ in
       efivar
       chkrootkit
       lynis
-#      nixfmt
+      #      nixfmt
       nix-index
       nixpkgs-fmt
       nixpkgs-lint
@@ -875,7 +876,7 @@ in
       mc
       nnn
       # vifm
-      lf
+      # lf
       trash-cli
       traceroute
       whois
@@ -902,7 +903,7 @@ in
       tree
       jdupes
       ag
-      htop
+      # htop
       gtop
       iftop
       atop
@@ -949,7 +950,7 @@ in
       psmisc
       ripgrep-all
       du-dust
-      exa
+      # exa
       srm
       tcpdump
       ethtool
@@ -1068,21 +1069,21 @@ in
         unstable.awscli
         unstable.clojure
         clojure-lsp
-        #unstable.clojure-lsp
-#        pulumi-bin
+        # unstable.clojure-lsp
+        # pulumi-bin
         unstable.pulumi-bin
         unstable.gitAndTools.gitFull
         unstable.gitAndTools.gh
         unstable.git-crypt
         unstable.git-lfs
         unstable.terraform
-        #unstable.terraform-ls
+        # unstable.terraform-ls
         unstable.terraform-lsp
         unstable.tflint
         unstable.kubernetes
         unstable.kubernetes-helm
         unstable.kubeseal
-        #unstable.helmfile
+        # unstable.helmfile
         unstable.helmsman
         unstable.kind
         unstable.kube3d
@@ -1097,16 +1098,16 @@ in
         unstable.kustomize
         unstable.k9s
         unstable.velero
-        #unstable.go
-        #unstable.xmind
+        # unstable.go
+        # unstable.xmind
         unstable.zoom-us
         unstable.teams
         signal-desktop
         kubectx
         dep
-        #poetry
+        # poetry
         /*
-        (unstable.terraform.withPlugins(p: with p; [
+          (unstable.terraform.withPlugins(p: with p; [
           archive
           aws
           external
@@ -1117,13 +1118,13 @@ in
           null
           random
           template
-        ]))
+          ]))
         */
         # (lowPrio unstable.python39Full)
-        #python3Full
-        #python39Full
-        #python39Packages.poetry
-        #unstable.python38Packages.pynvim
+        # python3Full
+        # python39Full
+        # python39Packages.poetry
+        # unstable.python38Packages.pynvim
         poetry
         (
           python39.withPackages (
@@ -1135,14 +1136,14 @@ in
               yubico-client
               pygments-markdown-lexer
               xstatic-pygments
-              #pylint
-              #pandas
-              #pycuda
-              #numpy
-              #opencv4
-              #scipy
-              #matplotlib
-              #jupyter
+              # pylint
+              # pandas
+              # pycuda
+              # numpy
+              # opencv4
+              # scipy
+              # matplotlib
+              # jupyter
               pynvim
               pyopenssl
             ]
@@ -1152,13 +1153,13 @@ in
         aspellDicts.en
         asciinema
         highlight
-        jq
-        #lorri
+        # jq
+        # lorri
         unstable.direnv
         psensor
         firefox-bin
         thunderbird
-        #libreoffice
+        # libreoffice
         onlyoffice-bin
         chromium
         ungoogled-chromium
@@ -1167,31 +1168,31 @@ in
         bitwarden
         bitwarden-cli
         shotcut
-#        unstable.amfora
+        # unstable.amfora
         unstable.lagrange
         unstable.vscode
-#        vscodium
+        # vscodium
         unstable.sublime4
         unstable.sublime-merge
-#        unstable.insomnia
+        # unstable.insomnia
         slack
         vlc
         filezilla
         gpicview
         home-manager
-        fzf
-        bat
+        # fzf
+        # bat
         ripgrep
         ripgrep-all
         tldr
         procs
         fd
         skypeforlinux
-#        zathura
+        # zathura
         mpv
         pv
         feh
-#        weechat
+        # weechat
         gcc
         gnumake
         gnupg
@@ -1207,10 +1208,10 @@ in
         bookworm
         ltrace
         /*
-        (unstable.tor-browser-bundle-bin.override {
+          (unstable.tor-browser-bundle-bin.override {
           mediaSupport = true;
           pulseaudioSupport = true;
-        })
+          })
         */
         unstable.keepassxc
         openconnect_openssl
@@ -1263,7 +1264,7 @@ in
       keep-derivations = true
       # preallocate-contents = false
       experimental-features = nix-command flakes
-      '';
+    '';
 
     gc = {
       automatic = true;
@@ -1285,57 +1286,57 @@ in
       allowBroken = true;
       allowUnfree = true;
       packageOverrides = pkgs: {
-#        unstable = import <nixpkgs-unstable> {
-#          config = config.nixpkgs.config;
-#        };
+        #        unstable = import <nixpkgs-unstable> {
+        #          config = config.nixpkgs.config;
+        #        };
         nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
           inherit pkgs;
         };
       };
     };
-/*
-    overlays = [
+    /*
+      overlays = [
       (self: super: {
 
-        element-desktop = super.element-desktop.overrideAttrs (old: rec {
-          version = "1.7.27";
-          src = pkgs.fetchFromGitHub {
-            owner = "vector-im";
-            repo = "element-desktop";
-            rev = "v${version}";
-            sha256 = "0rgsc2cc1v6gjsklwvsjlqq9a8j9j80h9ac0jkvf9lhq33f3c57k";
-          };
-        });
+      element-desktop = super.element-desktop.overrideAttrs (old: rec {
+      version = "1.7.27";
+      src = pkgs.fetchFromGitHub {
+      owner = "vector-im";
+      repo = "element-desktop";
+      rev = "v${version}";
+      sha256 = "0rgsc2cc1v6gjsklwvsjlqq9a8j9j80h9ac0jkvf9lhq33f3c57k";
+      };
+      });
 
       /*
       fwup = super.fwup.overrideAttrs (old: {
-        src = super.fetchFromGitHub {
-          owner = "fhunleth";
-          repo = "fwup";
-          rev = "v1.8.3";
-          sha256 = "0p3kp1kai5zrgagjzhd41gl84gfqk04qnq1d1dnf0ckvhsfdq9vb";
-        };
-        buildInputs = with super; [
-          libarchive
-          libconfuse
-          which
-          xdelta
-        ];
+      src = super.fetchFromGitHub {
+      owner = "fhunleth";
+      repo = "fwup";
+      rev = "v1.8.3";
+      sha256 = "0p3kp1kai5zrgagjzhd41gl84gfqk04qnq1d1dnf0ckvhsfdq9vb";
+      };
+      buildInputs = with super; [
+      libarchive
+      libconfuse
+      which
+      xdelta
+      ];
       });
-      */
-      /*
+    */
+    /*
       youtube-dl = super.youtube-dl.overrideAttrs (old: rec {
-        pname = "youtube-dl";
-        version = "2020.11.11-3";
-        postInstall = "";
-        src = pkgs.fetchurl {
-          url = "https://github.com/blackjack4494/yt-dlc/archive/${version}.tar.gz";
-          sha256 = "116azzzj0df3bv99zwn0rsarirw56knbq7xqn1fs8v4ilslqp7v4";
-        };
+      pname = "youtube-dl";
+      version = "2020.11.11-3";
+      postInstall = "";
+      src = pkgs.fetchurl {
+      url = "https://github.com/blackjack4494/yt-dlc/archive/${version}.tar.gz";
+      sha256 = "116azzzj0df3bv99zwn0rsarirw56knbq7xqn1fs8v4ilslqp7v4";
+      };
       });
-      */
-#      })
-#    ];
+    */
+    #      })
+    #    ];
   };
 
   # This value determines the NixOS release with which your system is to be
@@ -1353,18 +1354,18 @@ in
     };
   };
   /*
-  system = {
+    system = {
     autoUpgrade = {
-      enable = true;
-      allowReboot = true;
-      flake = self.outPath;
-      flags = [
-        "--recreate-lock-file"
-        "--no-write-lock-file"
-        "-L" # print build logs
-       ];
-      dates = "daily";
+    enable = true;
+    allowReboot = true;
+    flake = self.outPath;
+    flags = [
+    "--recreate-lock-file"
+    "--no-write-lock-file"
+    "-L" # print build logs
+    ];
+    dates = "daily";
     };
-  }:
+    }:
   */
 }

@@ -9,48 +9,47 @@ in
 {
 
   imports = [
-    ./dotfiles/.tmux.conf.nix
+    # ./dotfiles/.tmux.conf.nix
     ./dotfiles/rofi.nix
     ./dotfiles/i3status-rs.nix
+    ./dotfiles/neovim.nix
+    ./dotfiles/git.nix
+    ./dotfiles/alacritty.nix
+    ./dotfiles/tmux.nix
+    ./dotfiles/bashrc.nix
+    ./dotfiles/fish.nix
+    ./dotfiles/kitty.nix
+    ./dotfiles/ssh.nix
+    ./dotfiles/gpg.nix
+    # ./dotfiles/lf.nix
+
   ];
+
+  fonts.fontconfig.enable = true;
 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
 
     users.mudrii = {
+      services = {
+        lorri.enable = true;
+      };
 
       programs = {
-        /*
-        starship = {
+        jq.enable = true;
+        bat.enable = true;
+        command-not-found.enable = true;
+        dircolors.enable = true;
+        htop.enable = true;
+        info.enable = true;
+        exa.enable = true;
+
+        /*         starship = {
           enable = true;
           enableFishIntegration = true;
-        };
-        */
-        /*
-        fish = {
-          enable = true;
-          plugins = [
-            {}
-          ]
-        };
-        */
-/*
-        rofi = {
-          enable = true;
-          package = pkgs.rofi;
-          extraConfig = {
-            modi = "window,run,ssh,calc,drun";
-            show-icons =  true;
-            scrollbar = false;
-          };
-          font = "Droid Sans 14";
-          theme = "glue_pro_blue";
-          location = "center";
-          terminal = "${pkgs.kitty}/bin/kitty";
-          plugins = [ pkgs.rofi-calc ];
-        };
-*/
+          }; */
+
         fzf = {
           enable = true;
           enableFishIntegration = true;
@@ -58,222 +57,34 @@ in
 
         direnv = {
           enable = true;
-          enableFishIntegration = true;
-          nix-direnv.enable = true;
+          nix-direnv = {
+            enable = true;
+            enableFlakes = true;
+          };
         };
-
-        command-not-found = { enable = true; };
 
         home-manager = {
           enable = true;
           path = [ pkgs.user-environment ];
         };
-/*
-        tmux = {
-          enable = true;
-          historyLimit = 1000000;
-          default-terminal = "xterm-256color";
-        };
-*/
-#        kitty = { enable = true; };
-
-        alacritty = {
-          enable = true;
-          settings = {
-            env = {
-              "TERM" = "xterm-256color";
-            };
-            window = {
-              padding = {
-                x = 10;
-                y = 10;
-              };
-              decorations = "none";
-            };
-            scrolling.history = 100000;
-            font = {
-              normal = {
-                family = "Mononoki Nerd Font";
-                style = "Regular";
-              };
-              bold = {
-                family = "Mononoki Nerd Font";
-                style = "Bold";
-              };
-              bold_italic = {
-                family = "Mononoki Nerd Font";
-                style = "Bold Italic";
-              };
-              italic = {
-                family = "Mononoki Nerd Font";
-                style = "Italic";
-              };
-              size = 11.0;
-              offset = {
-                x = 1;
-                y = 1;
-              };
-            };
-            background_opacity = 1.0;
-          };
-        };
 
         /*
-              vim = {
-                enable = true;
-                settings = { ignorecase = true; };
-                extraConfig = builtins.readFile dotfiles/.vimrc;
-                plugins = with pkgs.vimPlugins; [
-                  vim-nix
-                  vim-airline
-                  vim-airline-themes
-                  nerdtree
-                  ctrlp-vim
-                  vim-fugitive
-                  fzf-vim
-                  syntastic
-                ];
-              };
-        */
-        neovim = {
+          vim = {
           enable = true;
-          vimAlias = true;
+          settings = { ignorecase = true; };
           extraConfig = builtins.readFile dotfiles/.vimrc;
-          plugins = with pkgs; [
-#            vimPlugins.vim-nix
-            vimPlugins.vim-addon-nix
-            vimPlugins.vim-fish
-            vimPlugins.vim-airline
-            vimPlugins.vim-airline-themes
-            vimPlugins.vim-devicons
-            vimPlugins.vim-gitgutter
-            #vimPlugins.completion-nvim
-            vimPlugins.ctrlp-vim
-            vimPlugins.vim-fugitive
-            vimPlugins.fzf-vim
-            vimPlugins.syntastic
-            vimPlugins.coc-python
-            vimPlugins.coc-nvim
-            vimPlugins.coc-yaml
-            vimPlugins.coc-json
-            vimPlugins.coc-html
-            vimPlugins.coc-lists
-            vimPlugins.coc-eslint
-            vimPlugins.coc-tsserver
-            vimPlugins.coc-snippets
-            vimPlugins.coc-spell-checker
-            vimPlugins.coc-pairs
-            vimPlugins.coc-prettier
-            vimPlugins.coc-markdownlint
-            unstable.vimPlugins.nerdtree
-            unstable.vimPlugins.nerdcommenter
-            unstable.vimPlugins.nerdtree-git-plugin
-            unstable.vimPlugins.vim-nerdtree-syntax-highlight
-            #unstable.vimPlugins.vim-closer
-            #unstable.vimPlugins.vim-endwise
-            unstable.vimPlugins.vim-snippets
-            unstable.vimPlugins.vim-commentary
-            unstable.vimPlugins.undotree
-            #unstable.vimPlugins.YouCompleteMe
-            #vimPlugins.nvim-lspconfig
-#          plugins = with pkgs.vimPlugins; [
-#            vim-nix
-#            vim-fish
-#            vim-airline
-#            vim-airline-themes
-#            vim-devicons
-#            vim-gitgutter
-#            nerdtree
-#            nerdcommenter
-#            completion-nvim
-#            nerdtree-git-plugin
-#            #coc-spell-checker
+          plugins = with pkgs.vimPlugins; [
+          vim-nix
+          vim-airline
+          vim-airline-themes
+          nerdtree
+          ctrlp-vim
+          vim-fugitive
+          fzf-vim
+          syntastic
           ];
-        };
-
-        git = {
-          enable = true;
-          userName = "mudrii";
-          userEmail = "mudreac@gmail.com";
-          ignores = [ "*~" "*.swp" ];
-          signing = {
-            key = "C37CEF50333B225E2FCA7D2003B8C6E70C3ED787";
-            signByDefault = true;
           };
-
-          aliases = {
-            unstage = "reset HEAD --";
-            pr = "pull --rebase";
-            addp = "add --patch";
-            comp = "commit --patch";
-            co = "checkout";
-            ci = "commit";
-            c = "commit";
-            b = "branch";
-            p = "push";
-            d = "diff";
-            a = "add";
-            s = "status";
-            f = "fetch";
-            pa = "add --patch";
-            pc = "commit --patch";
-            rf = "reflog";
-            l = "log --graph --pretty='%Cred%h%Creset - %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)' --abbrev-commit --date=relative";
-            pp = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)";
-            recent-branches = "branch --sort=-committerdate";
-          };
-
-          #        extraConfig = ''
-          #          [push]
-          #          default = simple
-          #          [commit]
-          #          template = ~/.config/nixpkgs/git-commit-template
-          #        '';
-
-          extraConfig = {
-            branch = { autoSetupMerge = "always"; };
-            stash = { showPatch = true; };
-            status = { showUntrackedFiles = "all"; };
-            transfer = { fsckobjects = false; };
-            #commit = { gpgsign = true; };
-
-            merge = {
-              conflictstyle = "diff3";
-              ff = "only";
-              summary = true;
-              tool = "vimdiff";
-              renamelimit = 10000;
-            };
-
-            core = {
-              #            pager = "less -R";
-              #            autocrlf = "input";
-              editor = "nvim";
-            };
-
-            remote = {
-              push = [
-                "refs/heads/*:refs/heads/*"
-                "refs/tags/*:refs/tags/*"
-              ];
-
-              fetch = [
-                "refs/heads/*:refs/remotes/origin/*"
-                "refs/tags/*:refs/tags/*"
-              ];
-            };
-
-            pull = {
-              rebase = true;
-            };
-
-            rebase = {
-              stat = true;
-              autoSquash = true;
-              autostash = true;
-            };
-          };
-        };
+        */
       };
 
       home = {
@@ -291,21 +102,21 @@ in
         };
         file = {
           ".config/libvirt/libvirt.conf".source = dotfiles/libvirt.conf;
-          ".config/nixpkgs/home.nix".source = dotfiles/home.nix;
-          ".bashrc".source = dotfiles/.bashrc;
-          ".inputrc".source = dotfiles/.inputrc;
-          ".dircolors".source = dotfiles/.dircolors;
-          ".git-completion.bash".source = dotfiles/.git-completion.bash;
-          ".git-prompt.sh".source = dotfiles/.git-prompt.sh;
           ".config/neofetch/config.conf".source = dotfiles/config.conf;
-          #".Xresources".source = dotfiles/.Xresources;
-          ".config/fontconfig/fonts.conf".source = dotfiles/fonts.conf;
-          ".config/lf/lfrc".source = dotfiles/lfrc;
-          ".gnupg/gpg-agent.conf".source = dotfiles/gpg-agent.conf;
-          ".gnupg/gpg.conf".source = dotfiles/gpg.conf;
+          # ".config/nixpkgs/home.nix".source = dotfiles/home.nix;
+          # ".bashrc".source = dotfiles/.bashrc;
+          # ".inputrc".source = dotfiles/.inputrc;
+          # ".dircolors".source = dotfiles/.dircolors;
+          # ".git-completion.bash".source = dotfiles/.git-completion.bash;
+          # ".git-prompt.sh".source = dotfiles/.git-prompt.sh;
+          # ".Xresources".source = dotfiles/.Xresources;
+          # ".config/fontconfig/fonts.conf".source = dotfiles/fonts.conf;
+          # ".config/lf/lfrc".source = dotfiles/lfrc;
+          # ".gnupg/gpg-agent.conf".source = dotfiles/gpg-agent.conf;
+          # ".gnupg/gpg.conf".source = dotfiles/gpg.conf;
+          # ".ssh/config".source = dotfiles/config.ssh;
+          # ".config/kitty/kitty.conf".source = dotfiles/kitty.conf;
           ".config/i3/config".source = dotfiles/config;
-          ".ssh/config".source = dotfiles/config.ssh;
-          ".config/kitty/kitty.conf".source = dotfiles/kitty.conf;
           ".config/i3/start_w1.sh".source = dotfiles/start_w1.sh;
           ".config/i3/start_w2.sh".source = dotfiles/start_w2.sh;
           ".config/i3/start_w3.sh".source = dotfiles/start_w3.sh;
@@ -320,8 +131,8 @@ in
           ".config/i3/workspace_6.json".source = dotfiles/workspace_6.json;
           #".config/i3status-rs/config.toml".source = dotfiles/config.toml;
           ".config/networkmanager-dmenu/config.ini".source = dotfiles/config.ini;
-          ".config/conky/conky.conf".source = dotfiles/conky.conf;
-          ".config/nixpkgs/config.nix".source = dotfiles/config.nix;
+          # ".config/conky/conky.conf".source = dotfiles/conky.conf;
+          # ".config/nixpkgs/config.nix".source = dotfiles/config.nix;
           ".config/ranger/commands_full.py".source = dotfiles/ranger/commands_full.py;
           ".config/ranger/commands.py".source = dotfiles/ranger/commands.py;
           ".config/ranger/rc.conf".source = dotfiles/ranger/rc.conf;
@@ -329,9 +140,9 @@ in
           ".config/ranger/scope.sh".source = dotfiles/ranger/scope.sh;
           ".config/ranger/plugins/ranger_devicons/__init__.py".source = dotfiles/ranger/plugins/ranger_devicons/__init__.py;
           ".config/ranger/plugins/ranger_devicons/devicons.py".source = dotfiles/ranger/plugins/ranger_devicons/devicons.py;
-          ".config/fish/config.fish".source = dotfiles/fish/config.fish;
-          ".config/fish/functions/fish_user_key_bindings.fish".source = dotfiles/fish/fish_user_key_bindings.fish;
-          ".config/fish/functions/fish_greeting.fish".source = dotfiles/fish/fish_greeting.fish;
+          # ".config/fish/config.fish".source = dotfiles/fish/config.fish;
+          # ".config/fish/functions/fish_user_key_bindings.fish".source = dotfiles/fish/fish_user_key_bindings.fish;
+          # ".config/fish/functions/fish_greeting.fish".source = dotfiles/fish/fish_greeting.fish;
         };
       };
     };
