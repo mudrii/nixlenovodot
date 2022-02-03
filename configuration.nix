@@ -29,7 +29,6 @@ in
       ./home-manager.nix
       # ./containers.nix
     ];
-
   /*
     imports = [
     ./containers/gcpdrgn.nix
@@ -52,12 +51,12 @@ in
   boot = {
     supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxPackages_latest;
-    #kernelPackages = unstable.linuxPackages_latest;
+    # kernelPackages = unstable.linuxPackages_latest;
     blacklistedKernelModules = [ "nouveau" ];
     cleanTmpDir = true;
-    #extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
-    #extraModulePackages = [ config.boot.kernelPackages.wireguard ];
-    #kernelParams = [ "nvidia-drm.modeset=1" ];
+    # extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
+    # extraModulePackages = [ config.boot.kernelPackages.wireguard ];
+    # kernelParams = [ "nvidia-drm.modeset=1" ];
 
     kernel.sysctl = {
       "vm.swappiness" = 10;
@@ -107,7 +106,7 @@ in
     };
 
     nvidia = {
-      #package = "config.boot.kernelPackages.nvidiaPackages.beta";
+      # package = "config.boot.kernelPackages.nvidiaPackages.beta";
       modesetting.enable = true;
       # nvidiaPersistenced = false;
       prime = {
@@ -122,14 +121,14 @@ in
     hostName = "p53-nixos";
     enableIPv6 = false;
     useDHCP = false;
-    #interfaces.enp0s31f6.useDHCP = true;
-    #nameservers = [ "8.8.8.8" "8.8.4.4" ];
-    #defaultGateway = "192.168.1.1";
-    #nameservers = [ "1.1.1.1" "1.0.0.1" ];
-    #interfaces.enp0s31f6.ipv4.addresses = [{
-    #    address = "192.168.1.11";
-    #    prefixLength = 24;
-    #  }];
+    # interfaces.enp0s31f6.useDHCP = true;
+    # nameservers = [ "8.8.8.8" "8.8.4.4" ];
+    # defaultGateway = "192.168.1.1";
+    # nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    # interfaces.enp0s31f6.ipv4.addresses = [{
+    #   address = "192.168.1.11";
+    #   prefixLength = 24;
+    # }];
     networkmanager = {
       enable = true;
       #  unmanaged = [ "enp0s31f6" ];
@@ -139,7 +138,6 @@ in
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
     /*
       nat = {
       enable = true;
@@ -220,7 +218,7 @@ in
     device = "/dev/nvme1n1p1";
     fsType = "ext4";
     options = [ "rw" "nofail" "noatime" "nodiratime" "discard" "auto" "exec" ];
-    #options = [ "rw" "uid=1000"];
+    # options = [ "rw" "uid=1000"];
   };
 
   programs = {
@@ -232,8 +230,8 @@ in
 
     ssh = {
       startAgent = false;
-      #forwardX11 = true;
-      #setXAuthLocation = true;
+      # forwardX11 = true;
+      # setXAuthLocation = true;
     };
 
     gnupg.agent = {
@@ -264,7 +262,8 @@ in
       /*
         promptInit = ''
         any-nix-shell fish --info-right | source
-        '';*/
+        '';
+      */
     };
 
     nano.nanorc = ''
@@ -279,13 +278,14 @@ in
 
   # List services that you want to enable:
   virtualisation = {
-    /*    docker = {
+    /* 
+      docker = {
       enable = true;
       enableNvidia = true;
       autoPrune.enable = true;
       enableOnBoot = true;
-      };*/
-
+      };
+    */
     podman = {
       enable = true;
       #extraPackages = [ pkgs.gvisor ];
@@ -312,8 +312,8 @@ in
 
   services = {
     # localtime.enable = true;
-    #urxvtd.enable = true;
-    #vnstat.enable = true;
+    # urxvtd.enable = true;
+    # vnstat.enable = true;
     blueman.enable = true;
     fwupd.enable = true;
     fstrim.enable = true;
@@ -344,7 +344,6 @@ in
         rotate 31
       '';
     };
-
     /*
       # Finger Print unlock login
       fprintd = {
@@ -374,7 +373,8 @@ in
 
     thinkfan = {
       enable = true;
-      /* levels = ''
+      /* 
+        levels = ''
         (0,     0,      65)
         (1,     58,     70)
         (2,     60,     71)
@@ -382,7 +382,8 @@ in
         (6,     66,     75)
         (7,     70,     95)
         (127,   90,     32767)
-        ''; */
+        '';
+      */
     };
 
     undervolt = {
@@ -669,7 +670,7 @@ in
       enable = true;
       # autorun = false;
       # videoDrivers = [ "intel" ];
-      #videoDrivers = [ "nvidiaBeta" ];
+      # videoDrivers = [ "nvidiaBeta" ];
       videoDrivers = [ "nvidia" ];
       layout = "us";
       xkbOptions = "eurosign:e";
@@ -767,29 +768,29 @@ in
 
     fonts = with pkgs; [
       corefonts
-      #      inconsolata
-      #      unifont
+      # inconsolata
+      # unifont
       ubuntu_font_family
-      #      symbola
+      # symbola
       nerdfonts
       freefont_ttf
       powerline-fonts
-      #      font-awesome
+      # font-awesome
       font-awesome_4
       dejavu_fonts
       google-fonts
       noto-fonts
-      #      noto-fonts-cjk
-      #      noto-fonts-emoji
-      #      liberation_ttf
-      #      fira-code
-      #      fira-code-symbols
-      #      mplus-outline-fonts
-      #      dina-font
-      #      proggyfonts
+      # noto-fonts-cjk
+      # noto-fonts-emoji
+      # liberation_ttf
+      # fira-code
+      # fira-code-symbols
+      # mplus-outline-fonts
+      # dina-font
+      # proggyfonts
       # emojione
-      #      twemoji-color-font
-      #      mononoki
+      # twemoji-color-font
+      # mononoki
     ];
   };
 
@@ -837,7 +838,7 @@ in
       efivar
       chkrootkit
       lynis
-      #      nixfmt
+      # nixfmt
       nix-index
       nixpkgs-fmt
       nixpkgs-lint
@@ -964,17 +965,17 @@ in
       nvme-cli
       ncurses
       protonvpn-cli
-      #protonvpn-gui
+      # unstable.protonvpn-gui
       openvpn
       wireguard
       wireguard-tools
-      #wireshark-cli
-      #wireshark
-      #aircrack-ng
+      # wireshark-cli
+      # wireshark
+      # aircrack-ng
       gksu
       unstable.gopass
       unstable.xmrig
-      #unstable.solaar # logitech mous unify receiver config
+      # unstable.solaar # logitech mous unify receiver config
     ];
 
     shellAliases = {
@@ -1045,9 +1046,9 @@ in
       openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCzc7Xx3FVqz2cV1qzkPFV9DmfXCvS98HWs6nzcZ+1zMQDpZUuSGY2hV8UyXgiitogLl3BTaKztvBmrzh3FeeRHYDX39eR+tvcL7mY+qIqUwyCrDcrXC+KHuMVcYWJPJBx+enlId/ZbBgzz4SpBTOVANGDv1AhkNhl1CDfSrIOSdoRdhQpcYqtjwmiy/giGhfwNwtTGFVJNXG5CZEtyKRyjN43dX12/g6eEThLpjAS7QxF8pCzLh754rjD4V4Qmg/t+BawOglSyNaqEBtdyd0xiI353hzdNG4U+6V3yPYKSdkZzHaGACwCNMKSfrF7IrIQtUc5d9b0H+XEjpKzPWaZWXg9Io/vKhSTK4brXeAnsck4kbWYj1RiU6noAZNZRleM8fMO6UdwzLZzrxGMOBFSSZHHUlgLEjadkc2kmGwvXx5bmEUXMCAb7jUIzv+TEoOcJfCj8xUGxCQtlk9kIguV0l8BWY0B6iwyNn8XM7taLdfIEMACkuD9v0y7SCBWRm6DL3PoVijnGX+g3ox1bGvx/9+4h1HbPH3POj5/C2Vh6kWtXFKTVHSrU4m8HsV94slD4ILTyfJxGWgL2TzjSJz3eKUlVNe9r1Pv14CDb2XaN4lGGxWV2aYDYwCwNaZyJTOXi/9tiflfmcHIiYRoABrss6nssfL2f6fNa0hm0ZAUClw== mudrii@arch" ];
 
       packages = with pkgs; [
-        unstable.kitty
-        unstable.alacritty
-        unstable.fish
+        # unstable.kitty
+        # unstable.alacritty
+        # unstable.fish
         unstable.bpytop
         unstable.glances
         neofetch
@@ -1061,7 +1062,7 @@ in
         exif
         exiftool
         mupdf
-        tmux
+        # tmux
         screen
         keychain
         unstable.minio-client
@@ -1251,7 +1252,7 @@ in
   };
 
   nix = {
-    #package = pkgs.nixUnstable;
+    # package = pkgs.nixUnstable;
     package = pkgs.nixFlakes;
     useSandbox = true;
     autoOptimiseStore = true;
@@ -1286,9 +1287,9 @@ in
       allowBroken = true;
       allowUnfree = true;
       packageOverrides = pkgs: {
-        #        unstable = import <nixpkgs-unstable> {
-        #          config = config.nixpkgs.config;
-        #        };
+        # unstable = import <nixpkgs-unstable> {
+        #   config = config.nixpkgs.config;
+        # };
         nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
           inherit pkgs;
         };
@@ -1353,7 +1354,7 @@ in
       # dates = "Sun *-*-* 04:00:00";
     };
   };
-  /*
+  /* 
     system = {
     autoUpgrade = {
     enable = true;

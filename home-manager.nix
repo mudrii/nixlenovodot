@@ -45,10 +45,6 @@ in
         info.enable = true;
         exa.enable = true;
 
-        /*         starship = {
-          enable = true;
-          enableFishIntegration = true;
-          }; */
 
         fzf = {
           enable = true;
@@ -67,8 +63,13 @@ in
           enable = true;
           path = [ pkgs.user-environment ];
         };
-
-        /*
+        /* 
+          starship = {
+          enable = true;
+          enableFishIntegration = true;
+          };
+        */
+        /* 
           vim = {
           enable = true;
           settings = { ignorecase = true; };
@@ -88,7 +89,6 @@ in
       };
 
       home = {
-        #stateVersion = "20.09";
         stateVersion = "21.11";
         sessionVariables = {
           EDITOR = "nvim";
@@ -96,9 +96,9 @@ in
           BROWSER = "firefox";
           MANPAGER = "nvim -c 'set ft=man' -";
           TERM = "xterm-256color";
-          #KUBECTL_EXTERNAL_DIFF = "meld";
-          #DOCKER_BUILDKIT = "1";
-          #LESS = "-R";
+          # KUBECTL_EXTERNAL_DIFF = "meld";
+          # DOCKER_BUILDKIT = "1";
+          # LESS = "-R";
         };
         file = {
           ".config/libvirt/libvirt.conf".source = dotfiles/libvirt.conf;
@@ -147,5 +147,4 @@ in
       };
     };
   };
-
 }
