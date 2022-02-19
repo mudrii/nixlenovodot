@@ -40,18 +40,18 @@
         stash = { showPatch = true; };
         status = { showUntrackedFiles = "all"; };
         transfer = { fsckobjects = false; };
-        #commit = { gpgsign = true; };
+        # commit = { gpgsign = true; };
 
         core = {
-          #            pager = "less -R";
-          #            autocrlf = "input";
+          # pager = "less -R";
+          # autocrlf = "input";
           editor = "nvim";
         };
 
-        /*         credential."https://github.com" = {
-          #helper = "!${pkgs.gh}/bin/gh auth git-credential";
-          helper = "!/run/current-system/sw/bin/gh auth git-credential";
-          }; */
+        # credential."https://github.com" = {
+        #   #helper = "!${pkgs.gh}/bin/gh auth git-credential";
+        #   helper = "!/run/current-system/sw/bin/gh auth git-credential";
+        #   };
 
         merge = {
           conflictstyle = "diff3";

@@ -50,12 +50,12 @@
 
       readline = {
         enable = true;
-        /* bindings = {
-          "\e[A" = "history-search-backward";
-          "\e[B" = "history-search-forward";
-          "\e[C" = "forward-char";
-          "\e[D" = "backward-char";
-        };*/
+        # bindings = {
+        #   "\\e[A" = "history-search-backward";
+        #   "\\e[B" = "history-search-forward";
+        #   "\\e[C" = "forward-char";
+        #   "\\e[D" = "backward-char";
+        # };
         extraConfig = ''
           "\e[A": history-search-backward
           "\e[B": history-search-forward

@@ -861,8 +861,10 @@ in
       #qemu
       #qemu-utils
       qemu_full
-      unstable.virt-manager
-      unstable.virt-viewer
+      #unstable.virt-manager
+      #unstable.virt-viewer
+      virt-manager
+      virt-viewer
       virt-top
       # undervolt
       acpica-tools

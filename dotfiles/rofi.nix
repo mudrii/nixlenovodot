@@ -9,11 +9,11 @@
         modi = "window,run,ssh,calc,drun";
         show-icons = true;
         scrollbar = false;
-        #          matching = "fuzzy";
+        # matching = "fuzzy";
       };
       font = "Droid Sans 14";
-      #        theme = "gruvbox-dark-hard";
-      #        theme = "Monokai";
+      # theme = "gruvbox-dark-hard";
+      # theme = "Monokai";
       theme = "Arc-Dark";
       location = "center";
       terminal = "${pkgs.kitty}/bin/kitty";

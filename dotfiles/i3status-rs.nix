@@ -31,15 +31,15 @@
           }
           {
             block = "custom";
-            command = "printf '\\\uf70f ' ; cat /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon8/fan1_input";
-            #command = "sensors thinkpad-isa-0000 | awk '/fan1/ {print $2}'";
+            command = "printf '\\\uf70f ' ; cat /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon9/fan1_input";
+            # command = "sensors thinkpad-isa-0000 | awk '/fan1/ {print $2}'";
             interval = 5;
           }
           {
             block = "custom";
-            #command = "sensors thinkpad-isa-0000 | awk '/fan2/ {print $2}'";
-            #command = "echo -ne '\uf70f ' ; cat /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon8/fan2_input";
-            command = "printf '\\\uf70f ' ; cat /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon8/fan2_input";
+            # command = "sensors thinkpad-isa-0000 | awk '/fan2/ {print $2}'";
+            # command = "echo -ne '\uf70f ' ; cat /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon8/fan2_input";
+            command = "printf '\\\uf70f ' ; cat /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon9/fan2_input";
             interval = 5;
           }
           {
@@ -102,14 +102,14 @@
             device = "intel_backlight";
             invert_icons = true;
           }
-          /*{
-            block = "bluetooth";
-            mac = "DC:71:96:F0:ED:B1";
-            }*/
+          # {
+          #   block = "bluetooth";
+          #   mac = "DC:71:96:F0:ED:B1";
+          # }
           {
             block = "battery";
             format = "{percentage} {time}";
-            #interval = 10;
+            # interval = 10;
             driver = "upower";
           }
           {
@@ -120,8 +120,8 @@
           {
             block = "custom";
             command = "printf '\\\uF011'";
-            #command = "echo '\uF011'";
-            #command = "echo '\u23fb'";
+            # command = "echo '\uF011'";
+            # command = "echo '\u23fb'";
             interval = 999999;
             on_click = "i3-nagbar -t warning -m 'What do you want to do?' -b 'Shutdown' 'shutdown now' -b 'Hibernate' 'systemctl hibernate' -b 'Reboot' 'reboot'";
           }

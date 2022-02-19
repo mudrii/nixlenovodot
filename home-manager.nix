@@ -21,6 +21,7 @@ in
     ./dotfiles/kitty.nix
     ./dotfiles/ssh.nix
     ./dotfiles/gpg.nix
+    # ./dotfiles/i3.nix
     # ./dotfiles/lf.nix
 
   ];
