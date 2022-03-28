@@ -24,14 +24,14 @@
             clickable = true;
             critical_mem = 90;
             display_type = "memory";
-            format_mem = "{mem_free}{mem_total_used}";
+            format_mem = "{mem_free} {mem_total_used}";
             icons = true;
             interval = 5;
             warning_mem = 70;
           }
           {
             block = "custom";
-            command = "printf '\\\uf70f ' ; cat /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon9/fan1_input";
+            command = "printf '\\\uf70f ' ; cat /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon8/fan1_input";
             # command = "sensors thinkpad-isa-0000 | awk '/fan1/ {print $2}'";
             interval = 5;
           }
@@ -39,7 +39,7 @@
             block = "custom";
             # command = "sensors thinkpad-isa-0000 | awk '/fan2/ {print $2}'";
             # command = "echo -ne '\uf70f ' ; cat /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon8/fan2_input";
-            command = "printf '\\\uf70f ' ; cat /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon9/fan2_input";
+            command = "printf '\\\uf70f ' ; cat /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon8/fan2_input";
             interval = 5;
           }
           {
