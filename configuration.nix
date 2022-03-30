@@ -1249,6 +1249,7 @@ in
         unicode-paracode
         unstable.system-config-printer
         play-with-mpv
+        jetbrains.idea-ultimate
       ];
     };
   };
