@@ -26,7 +26,8 @@ in
       ./hardware-configuration.nix
       <home-manager/nixos>
       # "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos"
-      ./home-manager.nix
+      #./home-manager-nelu.nix
+      ./home.nix
       # ./containers.nix
     ];
   /*
@@ -50,7 +51,7 @@ in
 
   boot = {
     supportedFilesystems = [ "ntfs" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = unstable.linuxPackages_latest;
     blacklistedKernelModules = [ "nouveau" ];
     cleanTmpDir = true;
@@ -124,14 +125,17 @@ in
     # interfaces.enp0s31f6.useDHCP = true;
     # nameservers = [ "8.8.8.8" "8.8.4.4" ];
     # defaultGateway = "192.168.1.1";
-    # nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    #nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    #resolvconf.enable = false;
     # interfaces.enp0s31f6.ipv4.addresses = [{
     #   address = "192.168.1.11";
     #   prefixLength = 24;
     # }];
     networkmanager = {
       enable = true;
-      #  unmanaged = [ "enp0s31f6" ];
+      #insertNameservers = [ "45.90.28.239" "45.90.30.239" ];
+      dns = "none";
+      # unmanaged = [ "enp0s31f6" ];
     };
     # Enables wireless support via wpa_supplicant.
     # wireless.enable = true;
@@ -150,8 +154,9 @@ in
     firewall = {
       # Or disable the firewall altogether.
       enable = true;
-      allowedTCPPorts = [ 22 80 443 2022 ];
+      allowedTCPPorts = [ 20 21 22 53 80 443 2022 ];
       allowedUDPPorts = [ 53 ];
+      allowedTCPPortRanges = [ { from = 51000; to = 51999; } ];
       allowPing = true;
       trustedInterfaces = [ "docker0" "virbr0" ];
     };
@@ -278,7 +283,7 @@ in
 
   # List services that you want to enable:
   virtualisation = {
-    /* 
+    /*
       docker = {
       enable = true;
       enableNvidia = true;
@@ -311,6 +316,7 @@ in
   };
 
   services = {
+    #resolved.enable = false;
     # localtime.enable = true;
     # urxvtd.enable = true;
     # vnstat.enable = true;
@@ -327,22 +333,35 @@ in
     #autorandr.enable = true;
     upower.enable = true;
 
+    nextdns = {
+      enable = true;
+      arguments = [
+        "-config"
+        "5954dd"
+      ];
+    };
+/*
     unbound = {
       enable = true;
+    };
+*/
+    vsftpd = {
+      enable = true;
+    # cannot chroot && write
+    #  chrootlocalUser = true;
+      writeEnable = true;
+      localUsers = true;
+      userlist = [ "mudrii" ];
+      userlistEnable = true;
+      extraConfig = ''
+        pasv_enable=Yes
+        pasv_min_port=51000
+        pasv_max_port=51999
+      '';
     };
 
     logrotate = {
       enable = true;
-      extraConfig = ''
-        compress
-        create
-        daily
-        dateext
-        delaycompress
-        missingok
-        notifempty
-        rotate 31
-      '';
     };
     /*
       # Finger Print unlock login
@@ -373,7 +392,7 @@ in
 
     thinkfan = {
       enable = true;
-      /* 
+      /*
         levels = ''
         (0,     0,      65)
         (1,     58,     70)
@@ -477,7 +496,7 @@ in
       enable = true;
       permitRootLogin = "no";
       passwordAuthentication = false;
-      challengeResponseAuthentication = false;
+      kbdInteractiveAuthentication = false;
       forwardX11 = true;
       ports = [ 2022 ];
     };
@@ -707,12 +726,13 @@ in
           '';
         */
         defaultSession = "none+i3";
-        autoLogin.enable = true;
-        autoLogin.user = "mudrii";
+        #autoLogin.enable = true;
+        #autoLogin.user = "mudrii";
 
         lightdm = {
           enable = true;
-          greeter.enable = false;
+          #greeter.enable = false; # for outo login
+          greeter.enable = true;
         };
       };
 
@@ -743,7 +763,7 @@ in
           escrotum
           obs-studio
           libva-utils
-          gnome3.networkmanagerapplet
+          networkmanagerapplet
           gimp
         ];
       };
@@ -905,8 +925,8 @@ in
       powertop
       tree
       jdupes
-      ag
-      # htop
+      #ag
+      silver-searcher
       gtop
       iftop
       atop
@@ -969,15 +989,16 @@ in
       protonvpn-cli
       # unstable.protonvpn-gui
       openvpn
-      wireguard
       wireguard-tools
       # wireshark-cli
       # wireshark
       # aircrack-ng
-      gksu
       unstable.gopass
       unstable.xmrig
+      unstable.linux-wifi-hotspot
+      unstable.dnsmasq
       # unstable.solaar # logitech mous unify receiver config
+      nextdns
     ];
 
     shellAliases = {
@@ -1036,6 +1057,19 @@ in
 
   users = {
     mutableUsers = false;
+    users.irutsu = {
+      isNormalUser = true;
+      home = "/home/irutsu";
+      shell = pkgs.fish;
+      description = "irutsu";
+      extraGroups = [ "wheel" "audio" "video" "networkmanager" ];
+    # mkpasswd -m sha-512 password
+      hashedPassword = "$6$/BP5EUle$Hycukkdtd/iBkM99UNrNIo5r/xQPIjBzK4QO2TXHRfjGZwYZJCwOMmcD1N5Wvw8M/5L/IJQLWEGhVSs8efnUS/";
+      openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCzc7Xx3FVqz2cV1qzkPFV9DmfXCvS98HWs6nzcZ+1zMQDpZUuSGY2hV8UyXgiitogLl3BTaKztvBmrzh3FeeRHYDX39eR+tvcL7mY+qIqUwyCrDcrXC+KHuMVcYWJPJBx+enlId/ZbBgzz4SpBTOVANGDv1AhkNhl1CDfSrIOSdoRdhQpcYqtjwmiy/giGhfwNwtTGFVJNXG5CZEtyKRyjN43dX12/g6eEThLpjAS7QxF8pCzLh754rjD4V4Qmg/t+BawOglSyNaqEBtdyd0xiI353hzdNG4U+6V3yPYKSdkZzHaGACwCNMKSfrF7IrIQtUc5d9b0H+XEjpKzPWaZWXg9Io/vKhSTK4brXeAnsck4kbWYj1RiU6noAZNZRleM8fMO6UdwzLZzrxGMOBFSSZHHUlgLEjadkc2kmGwvXx5bmEUXMCAb7jUIzv+TEoOcJfCj8xUGxCQtlk9kIguV0l8BWY0B6iwyNn8XM7taLdfIEMACkuD9v0y7SCBWRm6DL3PoVijnGX+g3ox1bGvx/9+4h1HbPH3POj5/C2Vh6kWtXFKTVHSrU4m8HsV94slD4ILTyfJxGWgL2TzjSJz3eKUlVNe9r1Pv14CDb2XaN4lGGxWV2aYDYwCwNaZyJTOXi/9tiflfmcHIiYRoABrss6nssfL2f6fNa0hm0ZAUClw== mudrii@arch" ];
+      packages = with pkgs; [
+        home-manager
+      ];
+    };
 
     users.mudrii = {
       isNormalUser = true;
@@ -1045,72 +1079,62 @@ in
       extraGroups = [ "wheel" "docker" "lp" "audio" "video" "tty" "input" "networkmanager" "libvirtd" "disk" "kvm" "qemu-libvirtd" ];
       # mkpasswd -m sha-512 password
       hashedPassword = "$6$ewXNcoQRNG$czTic9vE8CGH.eo4mabZsHVRdmTjtJF4SdDnIK0O/4STgzB5T2nD3Co.dRpVS3/uDD24YUxWrTDy2KRv7m/3N1";
-      openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCzc7Xx3FVqz2cV1qzkPFV9DmfXCvS98HWs6nzcZ+1zMQDpZUuSGY2hV8UyXgiitogLl3BTaKztvBmrzh3FeeRHYDX39eR+tvcL7mY+qIqUwyCrDcrXC+KHuMVcYWJPJBx+enlId/ZbBgzz4SpBTOVANGDv1AhkNhl1CDfSrIOSdoRdhQpcYqtjwmiy/giGhfwNwtTGFVJNXG5CZEtyKRyjN43dX12/g6eEThLpjAS7QxF8pCzLh754rjD4V4Qmg/t+BawOglSyNaqEBtdyd0xiI353hzdNG4U+6V3yPYKSdkZzHaGACwCNMKSfrF7IrIQtUc5d9b0H+XEjpKzPWaZWXg9Io/vKhSTK4brXeAnsck4kbWYj1RiU6noAZNZRleM8fMO6UdwzLZzrxGMOBFSSZHHUlgLEjadkc2kmGwvXx5bmEUXMCAb7jUIzv+TEoOcJfCj8xUGxCQtlk9kIguV0l8BWY0B6iwyNn8XM7taLdfIEMACkuD9v0y7SCBWRm6DL3PoVijnGX+g3ox1bGvx/9+4h1HbPH3POj5/C2Vh6kWtXFKTVHSrU4m8HsV94slD4ILTyfJxGWgL2TzjSJz3eKUlVNe9r1Pv14CDb2XaN4lGGxWV2aYDYwCwNaZyJTOXi/9tiflfmcHIiYRoABrss6nssfL2f6fNa0hm0ZAUClw== mudrii@arch" ];
-
+      openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8/tE2+oIwLnCnfzPSTqiZaeW++wUPNW5fOi124eGzWfcnOQGrjuwir3sZDKMS9DLqSTDNtvJ3/EZf6z/MLN/uxUE8lA+aKaSs0yopE7csQ89Aqkvp5fvCpz3BJuZgpxtwebPZyTc7QRGQWE4lM3fix3aJhfj827bdxA+sCiq8OnNiwYSXrIag1cQigafhLy6tYtCKdWcxzJq2ebGJF2wu2LU0zArb1SAOanhEOXxz0dG1I/7yMDBDC92R287nWpL+BwxuQcDv0xh/sWnViKixKv+B9ewJnz98iQPcg3WmYWe9BYAcaqkbgMqbwfUPqOHhFXmiQWUpOjsni2O6VoiN mudrii@nixos"];
       packages = with pkgs; [
-        # unstable.kitty
-        # unstable.alacritty
-        # unstable.fish
+        home-manager
         unstable.bpytop
         unstable.glances
         neofetch
-        ranger
         poppler_utils
         elinks
-        mediainfo
         w3m
         ffmpeg-full
         ffmpegthumbnailer
         exif
         exiftool
         mupdf
-        # tmux
         screen
         keychain
         unstable.minio-client
         google-cloud-sdk-gce
         unstable.awscli
-        unstable.clojure
-        clojure-lsp
-        # unstable.clojure-lsp
-        # pulumi-bin
-        unstable.pulumi-bin
+       # unstable.clojure
+       # clojure-lsp
+       # pulumi-bin
+       # unstable.pulumi-bin
         unstable.gitAndTools.gitFull
         unstable.gitAndTools.gh
         unstable.git-crypt
         unstable.git-lfs
         unstable.terraform
-        # unstable.terraform-ls
         unstable.terraform-lsp
         unstable.tflint
         unstable.kubernetes
         unstable.kubernetes-helm
-        unstable.kubeseal
-        # unstable.helmfile
-        unstable.helmsman
-        unstable.kind
-        unstable.kube3d
-        unstable.skopeo
-        unstable.dive
-        unstable.lens
-        unstable.docker-machine-kvm2
-        unstable.minikube
-        unstable.fluxctl
-        unstable.argo
-        unstable.argocd
-        unstable.kustomize
-        unstable.k9s
-        unstable.velero
-        # unstable.go
-        # unstable.xmind
-        unstable.zoom-us
-        unstable.teams
+       # unstable.kubeseal
+       # unstable.helmfile
+       # unstable.helmsman
+       # unstable.kind
+       # unstable.kube3d
+       # unstable.skopeo
+       # unstable.dive
+       # unstable.lens
+       # unstable.docker-machine-kvm2
+       # unstable.minikube
+       # unstable.fluxctl
+       # unstable.argo
+       # unstable.argocd
+       # unstable.kustomize
+       # unstable.k9s
+       # unstable.velero
+       # unstable.go
+       # unstable.xmind
+       # teams
         signal-desktop
-        kubectx
+       # kubectx
         dep
-        # poetry
         /*
-          (unstable.terraform.withPlugins(p: with p; [
+        (unstable.terraform.withPlugins(p: with p; [
           archive
           aws
           external
@@ -1121,14 +1145,14 @@ in
           null
           random
           template
-          ]))
+        ]))
         */
         # (lowPrio unstable.python39Full)
         # python3Full
         # python39Full
         # python39Packages.poetry
         # unstable.python38Packages.pynvim
-        poetry
+        # poetry
         (
           python39.withPackages (
             ps: with ps; [
@@ -1155,19 +1179,12 @@ in
         aspell
         aspellDicts.en
         asciinema
-        highlight
-        # jq
-        # lorri
         unstable.direnv
         psensor
-        firefox-bin
         thunderbird
         # libreoffice
         onlyoffice-bin
-        chromium
-        ungoogled-chromium
         qutebrowser
-        brave
         bitwarden
         bitwarden-cli
         shotcut
@@ -1180,17 +1197,12 @@ in
         # unstable.insomnia
         slack
         vlc
-        filezilla
         gpicview
-        home-manager
-        # fzf
-        # bat
         ripgrep
         ripgrep-all
         tldr
         procs
         fd
-        skypeforlinux
         # zathura
         mpv
         pv
@@ -1224,7 +1236,7 @@ in
         graphviz
         scrcpy
         unstable.pcmanfm
-        mucommander
+        #mucommander
         unstable.hexchat
         unstable.grsync
         unstable.luckybackup
@@ -1247,9 +1259,10 @@ in
         unstable.audacity
         unstable.nodejs
         unicode-paracode
-        unstable.system-config-printer
+        system-config-printer
         play-with-mpv
         jetbrains.idea-ultimate
+        viber
       ];
     };
   };
@@ -1289,6 +1302,9 @@ in
       pulseaudio = true;
       allowBroken = true;
       allowUnfree = true;
+      permittedInsecurePackages = [
+        "python3.9-poetry-1.1.12"
+      ];
       packageOverrides = pkgs: {
         # unstable = import <nixpkgs-unstable> {
         #   config = config.nixpkgs.config;
@@ -1357,7 +1373,7 @@ in
       # dates = "Sun *-*-* 04:00:00";
     };
   };
-  /* 
+  /*
     system = {
     autoUpgrade = {
     enable = true;

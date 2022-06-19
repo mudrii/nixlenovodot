@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home-manager.users.mudrii = {
+#  home-manager.users.mudrii = {
     programs.tmux = {
       enable = true;
       #keyMode = "vi";
@@ -55,5 +55,5 @@
         bind -r L resize-pane -R 2
       '';
     };
-  };
+#  };
 }

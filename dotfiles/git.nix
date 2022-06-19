@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home-manager.users.mudrii = {
+#  home-manager.users.mudrii = {
     programs.git = {
       enable = true;
       lfs.enable = true;
@@ -84,5 +84,5 @@
         };
       };
     };
-  };
+#  };
 }

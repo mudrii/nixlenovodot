@@ -7,7 +7,7 @@ let
 in
 
 {
-  home-manager.users.mudrii = {
+#  home-manager.users.mudrii = {
     programs.neovim = {
       enable = true;
       vimAlias = true;
@@ -316,5 +316,5 @@ in
         augroup END
       '';
     };
-  };
+#  };
 }

@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home-manager.users.mudrii = {
+#  home-manager.users.mudrii = {
     programs.alacritty = {
         enable = true;
         settings = {
@@ -42,5 +42,5 @@
           background_opacity = 1.0;
         };
       };
-    };
+#    };
 }

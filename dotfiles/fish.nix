@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home-manager.users.mudrii = {
+#  home-manager.users.mudrii = {
     programs.fish = {
       enable = true;
       shellAliases = {
@@ -102,5 +102,5 @@
         };
       };
     };
-  };
+#  };
 }

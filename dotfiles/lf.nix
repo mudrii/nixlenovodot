@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home-manager.users.mudrii = {
+#  home-manager.users.mudrii = {
     programs.lf = {
       enable = true;
       extraConfig = ''
@@ -163,6 +163,5 @@
         map gN cd /etc/nixos
       '';
     };
-  };
+#  };
 }
-

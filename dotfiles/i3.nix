@@ -5,7 +5,7 @@ let
 in
 
 {
-  home-manager.users.mudrii = {
+#  home-manager.users.mudrii = {
     xsession.windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
@@ -200,14 +200,11 @@ in
       exec_always --no-startup-id nm-applet --indicator
       exec --no-startup-id numlockx on
 
-
       exec_always --no-startup-id xautolock -time 15 -locker 'i3lock-fancy -gpf Comic-Sans-MS' -detectsleep
       bindsym Mod4+p exec --no-startup-id $Locker, mode "default"
       set $Locker i3lock-fancy -gpf Comic-Sans-MS && sleep 1
       set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
        
-
-
       bindsym Mod4+Ctrl+1 exec ~/.config/i3/start_w1.sh
       bindsym Mod4+Ctrl+2 exec ~/.config/i3/start_w2.sh
       bindsym Mod4+Ctrl+3 exec ~/.config/i3/start_w3.sh
@@ -225,5 +222,5 @@ in
       bindsym --release Ctrl+Print exec "escrotum -C "
     '';
     };
-  };
+#  };
 }

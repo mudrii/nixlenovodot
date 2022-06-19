@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home-manager.users.mudrii = {
+#  home-manager.users.mudrii = {
     services.gpg-agent = {
       enable = true;
       enableSshSupport = true;
@@ -35,5 +35,5 @@
         throw-keyids = true;
       };
     };
-  };
+#  };
 }

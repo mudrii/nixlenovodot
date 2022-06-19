@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home-manager.users.mudrii = {
+#  home-manager.users.mudrii = {
     programs.ssh = {
       enable = true;
       compression = true;
@@ -57,6 +57,5 @@
         };
       };
     };
-  };
+#  };
 }
-

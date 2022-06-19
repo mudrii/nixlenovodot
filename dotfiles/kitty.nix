@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home-manager.users.mudrii = {
+#  home-manager.users.mudrii = {
     programs.kitty = {
       enable = true;
       extraConfig = ''
@@ -203,5 +203,5 @@
         map kitty_mod+delete clear_terminal reset active
       '';
     };
-  };
+#  };
 }
