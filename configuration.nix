@@ -134,8 +134,8 @@ in
     networkmanager = {
       enable = true;
       #insertNameservers = [ "45.90.28.239" "45.90.30.239" ];
-      dns = "none";
-      # unmanaged = [ "enp0s31f6" ];
+      #dns = "none";
+      unmanaged = [ "enp0s31f6" ];
     };
     # Enables wireless support via wpa_supplicant.
     # wireless.enable = true;
@@ -332,7 +332,7 @@ in
     lorri.enable = true;
     #autorandr.enable = true;
     upower.enable = true;
-
+/*
     nextdns = {
       enable = true;
       arguments = [
@@ -340,11 +340,26 @@ in
         "5954dd"
       ];
     };
-/*
-    unbound = {
+
+*/    unbound = {
       enable = true;
+      settings = {
+        server = {
+          interface = [ "127.0.0.1" ];
+        };
+        forward-zone = {
+          name = ".";
+          forward-tls-upstream =  "yes";
+          forward-addr = [
+            "45.90.28.0#5954dd.dns1.nextdns.io"
+            "2a07:a8c0::#5954dd.dns1.nextdns.io"
+            "45.90.30.0#5954dd.dns2.nextdns.io"
+            "2a07:a8c1::#5954dd.dns2.nextdns.io"
+          ];
+        };
+      };
     };
-*/
+
     vsftpd = {
       enable = true;
     # cannot chroot && write
@@ -998,7 +1013,7 @@ in
       unstable.linux-wifi-hotspot
       unstable.dnsmasq
       # unstable.solaar # logitech mous unify receiver config
-      nextdns
+      #nextdns
     ];
 
     shellAliases = {
@@ -1365,7 +1380,7 @@ in
   # should.
   system = {
     copySystemConfiguration = true;
-    stateVersion = "21.11"; # Did you read the comment?
+    stateVersion = "22.05"; # Did you read the comment?
     autoUpgrade = {
       enable = true;
       dates = "weekly";
