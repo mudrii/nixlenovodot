@@ -8,12 +8,12 @@
       userName = "mudrii";
       userEmail = "mudreac@gmail.com";
       ignores = [ "*~" "*.swp" ];
-/*
+
       signing = {
         key = "C37CEF50333B225E2FCA7D2003B8C6E70C3ED787";
         signByDefault = true;
       };
-*/
+
       aliases = {
         unstage = "reset HEAD --";
         pr = "pull --rebase";
