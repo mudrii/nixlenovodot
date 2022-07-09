@@ -1009,7 +1009,8 @@ in
       # wireshark
       # aircrack-ng
       unstable.gopass
-      unstable.xmrig
+      xmrig
+      xmr-stak
       unstable.linux-wifi-hotspot
       unstable.dnsmasq
       # unstable.solaar # logitech mous unify receiver config
@@ -1266,8 +1267,8 @@ in
         yubico-pam
         monero
         monero-gui
-        unstable.xmrig
-        unstable.xmr-stak
+        #unstable.xmrig
+        #unstable.xmr-stak
         unstable.ledger
         unstable.ledger-web
         unstable.ledger-live-desktop
