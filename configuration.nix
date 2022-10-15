@@ -135,7 +135,7 @@ in
       enable = true;
       #insertNameservers = [ "45.90.28.239" "45.90.30.239" ];
       #dns = "none";
-      unmanaged = [ "enp0s31f6" ];
+      #unmanaged = [ "enp0s31f6" ];
     };
     # Enables wireless support via wpa_supplicant.
     # wireless.enable = true;
@@ -341,7 +341,9 @@ in
       ];
     };
 
-*/    unbound = {
+*/
+/*
+    unbound = {
       enable = true;
       settings = {
         server = {
@@ -351,15 +353,15 @@ in
           name = ".";
           forward-tls-upstream =  "yes";
           forward-addr = [
-            "45.90.28.0#5954dd.dns1.nextdns.io"
-            "2a07:a8c0::#5954dd.dns1.nextdns.io"
-            "45.90.30.0#5954dd.dns2.nextdns.io"
-            "2a07:a8c1::#5954dd.dns2.nextdns.io"
+            "45.90.28.0#2ed827.dns1.nextdns.io"
+            "2a07:a8c0::#2ed827.dns1.nextdns.io"
+            "45.90.30.0#2ed827.dns2.nextdns.io"
+            "2a07:a8c1::#2ed827.dns2.nextdns.io"
           ];
         };
       };
     };
-
+*/
     vsftpd = {
       enable = true;
     # cannot chroot && write
@@ -1008,7 +1010,7 @@ in
       # wireshark-cli
       # wireshark
       # aircrack-ng
-      unstable.gopass
+      gopass
       xmrig
       xmr-stak
       unstable.linux-wifi-hotspot
@@ -1265,8 +1267,8 @@ in
         yubikey-personalization-gui
         yubioath-desktop
         yubico-pam
-        monero
-        monero-gui
+        unstable.monero
+        unstable.monero-gui
         #unstable.xmrig
         #unstable.xmr-stak
         unstable.ledger
